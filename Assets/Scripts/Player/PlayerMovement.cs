@@ -15,11 +15,19 @@ public class PlayerMovement : MonoBehaviour
     //Control
     Vector3 movementDirection;
     RaycastHit hit;
+    float groundLevel;
+    float verticalSpeed;
+    bool isOnGround {
+        get {
+            return transform.position.y <= groundLevel;
+        }
+    }
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         playerCollider = GetComponent<Collider>();
+        groundLevel = transform.position.y;
     }
 
     // Update is called once per frame
@@ -27,8 +35,16 @@ public class PlayerMovement : MonoBehaviour
     {
         float hMovement = Input.GetAxisRaw("Horizontal");
         float vMovement = Input.GetAxisRaw("Vertical");
+        float jumpMovement = Input.GetAxisRaw("Jump");
 
-        movementDirection = (hMovement * transform.right + vMovement * transform.forward).normalized;
+        if (!isOnGround) {
+            jumpMovement = 0;
+            verticalSpeed -= 0.01f;
+        } else if (jumpMovement > 0) {
+            verticalSpeed = jumpMovement;
+        }
+
+        movementDirection = (hMovement * transform.right + vMovement * transform.forward + verticalSpeed * transform.up).normalized;
     }
 
     private void FixedUpdate() {        

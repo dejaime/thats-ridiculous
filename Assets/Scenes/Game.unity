@@ -307,6 +307,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9077111763621713757, guid: c43d01396c82a6b478d215e920cede9f, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 9077111763621713757, guid: c43d01396c82a6b478d215e920cede9f, type: 3}
+      propertyPath: m_StepOffset
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43d01396c82a6b478d215e920cede9f, type: 3}
 --- !u!1 &1619892894
