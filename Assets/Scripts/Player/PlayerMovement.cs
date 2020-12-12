@@ -9,14 +9,17 @@ public class PlayerMovement : MonoBehaviour
     float moveSpeed;
 
     //Components
-    Rigidbody rigidBody;
+    CharacterController characterController;
+    Collider playerCollider;
 
     //Control
     Vector3 movementDirection;
+    RaycastHit hit;
 
     private void Awake()
     {
-        rigidBody = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
+        playerCollider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -29,11 +32,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        Move();
+        float frameSpeed = moveSpeed;
+        if (DetectWallHit(moveSpeed)) {
+            frameSpeed = hit.distance;
+        }
+        
+        Move(frameSpeed);
     }
 
 
-    private void Move () {
-        rigidBody.velocity = movementDirection * moveSpeed * Time.deltaTime;
+    private void Move (float frameSpeed) {
+        characterController.Move(movementDirection * frameSpeed * Time.deltaTime);
     }
+
 }
