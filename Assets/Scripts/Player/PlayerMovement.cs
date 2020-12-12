@@ -17,9 +17,11 @@ public class PlayerMovement : MonoBehaviour
     RaycastHit hit;
     float groundLevel;
     float verticalSpeed;
-    bool isOnGround {
+
+    bool _isGrounded;
+    bool isGrounded {
         get {
-            return transform.position.y <= groundLevel;
+            return _isGrounded;
         }
     }
 
@@ -37,7 +39,9 @@ public class PlayerMovement : MonoBehaviour
         float vMovement = Input.GetAxisRaw("Vertical");
         float jumpMovement = Input.GetAxisRaw("Jump");
 
-        if (!isOnGround) {
+        _isGrounded = IsGroundedRayCast();
+
+        if (!isGrounded) {
             jumpMovement = 0;
             verticalSpeed -= 0.01f;
         } else if (jumpMovement > 0) {
@@ -56,4 +60,7 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(movementDirection * frameSpeed * Time.deltaTime);
     }
 
+    private bool IsGroundedRayCast (){
+        return true;
+    }
 }
