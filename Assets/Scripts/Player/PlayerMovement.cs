@@ -31,13 +31,8 @@ public class PlayerMovement : MonoBehaviour
         movementDirection = (hMovement * transform.right + vMovement * transform.forward).normalized;
     }
 
-    private void FixedUpdate() {
-        float frameSpeed = moveSpeed;
-        if (DetectWallHit(moveSpeed)) {
-            frameSpeed = hit.distance;
-        }
-        
-        Move(frameSpeed);
+    private void FixedUpdate() {        
+        Move(moveSpeed);
     }
 
 
