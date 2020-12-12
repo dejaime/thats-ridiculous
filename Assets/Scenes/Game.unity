@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4175111301547005858, guid: c43d01396c82a6b478d215e920cede9f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4175111301547005858, guid: c43d01396c82a6b478d215e920cede9f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -408,6 +408,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1177155001615916739, guid: 5d0b5ab15c874f44d83d1f54b4c15564, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1992077035203849315, guid: 5d0b5ab15c874f44d83d1f54b4c15564, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -455,6 +459,10 @@ PrefabInstance:
     - target: {fileID: 1992077035203849316, guid: 5d0b5ab15c874f44d83d1f54b4c15564, type: 3}
       propertyPath: m_Name
       value: Buildings
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323984662667453025, guid: 5d0b5ab15c874f44d83d1f54b4c15564, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d0b5ab15c874f44d83d1f54b4c15564, type: 3}
