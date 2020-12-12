@@ -1,7 +1,6 @@
-This folder holds placeholder assets acquired from the asset store.
+This folder holds assets acquired from the asset store.
 They can be found here: https://assetstore.unity.com/packages/3d/environments/industrial/simple-airport-cartoon-assets-37604
 
 I cannot distribute the assets found in here due to licensing issues.
 If you want to build the game yourself, you can simply import the assets to the folder and it should work fine.
 
-These assets are going to be replaced in the future. Until then, this folder is going to gitignore.
