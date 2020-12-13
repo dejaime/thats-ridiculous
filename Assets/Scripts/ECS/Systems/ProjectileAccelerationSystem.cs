@@ -8,10 +8,12 @@ public class ProjectileAccelerationSystem : JobComponentSystem {
 		protected override JobHandle OnUpdate(JobHandle inputDeps) {
 				float deltaTime = Time.DeltaTime;
 
-				Entities.ForEach((ref ProjectileSpeedData speedData, in ProjectileAccelerationData accelerationData) => {
+				JobHandle job = Entities.ForEach((ref ProjectileSpeedData speedData, in ProjectileAccelerationData accelerationData) => {
 						speedData.XZSpeed += accelerationData.XZAcceleration;
-				}).Run();
+				}).Schedule(inputDeps);
 
-				return inputDeps;
+				job.Complete();
+
+				return job;
 		}
 }
