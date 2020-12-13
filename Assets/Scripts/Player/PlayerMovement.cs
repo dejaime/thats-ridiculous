@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
 				float frontMovement = Input.GetAxisRaw("Vertical");
 				float jumpMovement = Input.GetAxisRaw("Jump");
 
-				GroundedRayCastTest();
+				SphereCastTestGrounded();
 
 				if (isGrounded) {
 						if (jumpMovement > 0) {
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 
-		private void GroundedRayCastTest() {
+		private void SphereCastTestGrounded() {
 				isGrounded = Physics.SphereCast(transform.position, characterController.radius, Vector3.down, out groundRaycastHit, isGroundedDistance);
 
 				if (isGrounded) {
