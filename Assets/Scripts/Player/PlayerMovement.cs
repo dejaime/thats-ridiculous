@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour {
 		float airSpeedMultiplier = 1.1f;
 
 		[SerializeField]
-		float jumpIntensity = 1.5f;
+		float jumpIntensity = 1f;
 
 		[SerializeField]
 		float gravity = 0.01f;
