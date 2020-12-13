@@ -311,10 +311,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 470738601454197898, guid: 1fe43f95c5eddc1458e54b73fb03492f, type: 3}
-      propertyPath: isGroundedDistance
-      value: 1.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fe43f95c5eddc1458e54b73fb03492f, type: 3}
 --- !u!1 &1619892894

@@ -44,14 +44,13 @@ public class PlayerMovement : MonoBehaviour {
 
 				if (isGrounded) {
 						if (jumpMovement > 0) {
-								verticalInertialSpeed = jumpMovement * 100;
-								hMovement *= 0.3f;
+								verticalInertialSpeed = jumpMovement * 2;
 						} else {
-								jumpMovement = 0;
+								verticalInertialSpeed = 0;
 						}
 				} else {
 						//Is not grounded, apply Gravity
-						verticalInertialSpeed -= 0.6f;
+						verticalInertialSpeed -= 0.01f;
 				}
 
 				movementDirection = (hMovement * transform.right + frontMovement * transform.forward + verticalInertialSpeed * transform.up).normalized;
@@ -63,7 +62,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
 		private void Move() {
-				Debug.Log(movementDirection * moveSpeed * Time.deltaTime);
+				Debug.Log("movement direction " +  (movementDirection * moveSpeed * Time.deltaTime).sqrMagnitude);
 				characterController.Move(movementDirection * moveSpeed * Time.deltaTime);
 		}
 
