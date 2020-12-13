@@ -2,65 +2,84 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
-    //Inspector Variables
-    [SerializeField]
-    float moveSpeed;
+public class PlayerMovement : MonoBehaviour {
+		//Inspector Variables
+		[SerializeField]
+		float moveSpeed;
 
-    //Components
-    CharacterController characterController;
-    Collider playerCollider;
+		[SerializeField]
+		float isGroundedDistance = 1.5f;
 
-    //Control
-    Vector3 movementDirection;
-    RaycastHit hit;
-    float groundLevel;
-    float verticalSpeed;
+		//Components
+		CharacterController characterController;
+		Collider playerCollider;
+		MeshRenderer meshRenderer;
 
-    bool _isGrounded;
-    bool isGrounded {
-        get {
-            return _isGrounded;
-        }
-    }
+		//Control
+		Vector3 movementDirection;
 
-    private void Awake()
-    {
-        characterController = GetComponent<CharacterController>();
-        playerCollider = GetComponent<Collider>();
-        groundLevel = transform.position.y;
-    }
+		//  '- - Jump
+		RaycastHit groundRaycastHit;
+		float groundLevel;
+		float verticalInertialSpeed;
 
-    // Update is called once per frame
-    private void Update()
-    {
-        float hMovement = Input.GetAxisRaw("Horizontal");
-        float vMovement = Input.GetAxisRaw("Vertical");
-        float jumpMovement = Input.GetAxisRaw("Jump");
-
-        _isGrounded = IsGroundedRayCast();
-
-        if (!isGrounded) {
-            jumpMovement = 0;
-            verticalSpeed -= 0.01f;
-        } else if (jumpMovement > 0) {
-            verticalSpeed = jumpMovement;
-        }
-
-        movementDirection = (hMovement * transform.right + vMovement * transform.forward + verticalSpeed * transform.up).normalized;
-    }
-
-    private void FixedUpdate() {        
-        Move(moveSpeed);
-    }
+		bool isGrounded;
 
 
-    private void Move (float frameSpeed) {
-        characterController.Move(movementDirection * frameSpeed * Time.deltaTime);
-    }
+		private void Awake() {
+				characterController = GetComponent<CharacterController>();
+				playerCollider = GetComponent<Collider>();
+				meshRenderer = GetComponentInChildren<MeshRenderer>();
+				groundLevel = transform.position.y;
+		}
 
-    private bool IsGroundedRayCast (){
-        return true;
-    }
+
+		// Update is called once per frame
+		private void Update() {
+				float hMovement = Input.GetAxisRaw("Horizontal");
+				float frontMovement = Input.GetAxisRaw("Vertical");
+				float jumpMovement = Input.GetAxisRaw("Jump");
+
+				GroundedRayCastTest();
+
+				if (isGrounded) {
+						if (jumpMovement > 0) {
+								verticalInertialSpeed = jumpMovement * 100;
+								hMovement *= 0.3f;
+						} else {
+								jumpMovement = 0;
+						}
+				} else {
+						//Is not grounded, apply Gravity
+						verticalInertialSpeed -= 0.6f;
+				}
+
+				movementDirection = (hMovement * transform.right + frontMovement * transform.forward + verticalInertialSpeed * transform.up).normalized;
+		}
+
+		private void FixedUpdate() {
+				Move();
+		}
+
+
+		private void Move() {
+				Debug.Log(movementDirection * moveSpeed * Time.deltaTime);
+				characterController.Move(movementDirection * moveSpeed * Time.deltaTime);
+		}
+
+
+		private void GroundedRayCastTest() {
+				isGrounded = Physics.SphereCast(transform.position, characterController.radius, Vector3.down, out groundRaycastHit, isGroundedDistance);
+
+				if (isGrounded) {
+						meshRenderer.material.color = Color.green;
+				} else {
+						meshRenderer.material.color = Color.red;
+				}
+		}
+
+
+		private void OnDrawGizmos() {
+				Debug.DrawRay(transform.position, Vector3.down * isGroundedDistance, Color.red);
+		}
 }
