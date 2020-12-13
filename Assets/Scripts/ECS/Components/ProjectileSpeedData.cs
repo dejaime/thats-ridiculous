@@ -2,6 +2,6 @@
 using Unity.Mathematics;
 
 [GenerateAuthoringComponent]
-public class ProjectileSpeedData : IComponentData {
-    public float2 XZDirection;
+public struct ProjectileSpeedData : IComponentData {
+    public float2 XZSpeed;
 }
