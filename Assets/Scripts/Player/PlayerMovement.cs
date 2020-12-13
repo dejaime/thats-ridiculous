@@ -5,7 +5,22 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 		//Inspector Variables
 		[SerializeField]
-		float moveSpeed;
+		float _moveSpeed = 100f;
+
+        [SerializeField]
+		float airSpeedMultiplier = 1.1f;
+
+        [SerializeField]
+        float jumpIntensity = 1.5f;
+
+        [SerializeField]
+        float gravity = 0.01f;
+
+        float moveSpeed {
+            get{ return isGrounded ? _moveSpeed : _moveSpeed * airSpeedMultiplier; }
+        }
+
+        
 
 		[SerializeField]
 		float isGroundedDistance = 1.5f;
@@ -44,13 +59,13 @@ public class PlayerMovement : MonoBehaviour {
 
 				if (isGrounded) {
 						if (jumpMovement > 0) {
-								verticalInertialSpeed = jumpMovement * 2;
+								verticalInertialSpeed = jumpMovement * jumpIntensity;
 						} else {
 								verticalInertialSpeed = 0;
 						}
 				} else {
 						//Is not grounded, apply Gravity
-						verticalInertialSpeed -= 0.01f;
+						verticalInertialSpeed -= gravity;
 				}
 
 				movementDirection = (hMovement * transform.right + frontMovement * transform.forward + verticalInertialSpeed * transform.up).normalized;
