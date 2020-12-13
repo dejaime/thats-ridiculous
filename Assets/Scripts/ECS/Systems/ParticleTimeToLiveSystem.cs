@@ -1,18 +1,14 @@
 using Unity.Entities;
 using Unity.Jobs;
-using Unity.Mathematics;
-using Unity.Physics;
-using UnityEngine;
+using Unity.Collections;
 
 [AlwaysSynchronizeSystem]
-public class ProjectileTimeToLiveSystem : JobComponentSystem {
-		protected override JobHandle OnUpdate(JobHandle inputDeps) {
+public class ProjectileTimeToLiveSystem : SystemBase {
+		protected override void OnUpdate() {
 				float deltaTime = Time.DeltaTime;
-
-				Entities.WithAll<ProjectileTimeToLiveData>().ForEach((ref ProjectileTimeToLiveData ttlData) => {
+                
+				Entities.WithAll<ProjectileTimeToLiveData>().ForEach((Entity entity, ref ProjectileTimeToLiveData ttlData) => {
 						ttlData.timeToLive -= deltaTime;
 				}).Run();
-
-				return default;
 		}
 }
