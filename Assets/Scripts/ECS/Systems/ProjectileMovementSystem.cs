@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class ProjectileMovementSystem : JobComponentSystem {
 		protected override JobHandle OnUpdate(JobHandle inputDeps) {
-				Entities.ForEach((ref PhysicsVelocity velocity, in ProjectileSpeedData projectileData) => {
+				JobHandle job = Entities.ForEach((ref PhysicsVelocity velocity, in ProjectileSpeedData projectileData) => {
 						velocity.Linear.xz = projectileData.XZSpeed;
-				}).Run();
-				return inputDeps;
+				}).Schedule(inputDeps);
+
+                job.Complete();
+
+                return job;
 		}
 }
