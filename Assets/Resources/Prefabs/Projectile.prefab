@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 1806235016987292442}
   - component: {fileID: 1806235016987292436}
   - component: {fileID: 1806235016987292446}
+  - component: {fileID: 6710417028293147367}
+  - component: {fileID: 2030978082}
+  - component: {fileID: 2030978083}
   m_Layer: 8
   m_Name: Projectile
   m_TagString: Untagged
@@ -290,3 +293,46 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &6710417028293147367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806235016987292445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e944b85971b3848ac6ee3876f06d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XZAcceleration:
+    x: 0.05
+    y: 0.01
+--- !u!114 &2030978082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806235016987292445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8085e1d7d389d46a54d7ac04eca0d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToLive: 5
+--- !u!114 &2030978083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806235016987292445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84c5fcc529ad454cb1ff30b208f26a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XZSpeed:
+    x: -10
+    y: 5
