@@ -6,6 +6,7 @@ TagManager:
   tags:
   - KillTrigger
   - Projectile
+  - Ground
   layers:
   - Default
   - TransparentFX
