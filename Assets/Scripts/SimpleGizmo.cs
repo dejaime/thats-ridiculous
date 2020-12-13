@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleGizmo : MonoBehaviour
-{
+public class SimpleGizmo : MonoBehaviour {
     [SerializeField]
     Color color = Color.blue;
 
