@@ -7,20 +7,20 @@ public class PlayerMovement : MonoBehaviour {
 		[SerializeField]
 		float _moveSpeed = 100f;
 
-        [SerializeField]
+		[SerializeField]
 		float airSpeedMultiplier = 1.1f;
 
-        [SerializeField]
-        float jumpIntensity = 1.5f;
+		[SerializeField]
+		float jumpIntensity = 1.5f;
 
-        [SerializeField]
-        float gravity = 0.01f;
+		[SerializeField]
+		float gravity = 0.01f;
 
-        float moveSpeed {
-            get{ return isGrounded ? _moveSpeed : _moveSpeed * airSpeedMultiplier; }
-        }
+		float moveSpeed {
+				get { return isGrounded ? _moveSpeed : _moveSpeed * airSpeedMultiplier; }
+		}
 
-        
+
 
 		[SerializeField]
 		float isGroundedDistance = 1.5f;
@@ -31,11 +31,11 @@ public class PlayerMovement : MonoBehaviour {
 		MeshRenderer meshRenderer;
 
 		//Control
+		Queue<Vector3> spawnPositionQueue;
 		Vector3 movementDirection;
 
 		//  '- - Jump
 		RaycastHit groundRaycastHit;
-		float groundLevel;
 		float verticalInertialSpeed;
 
 		bool isGrounded;
@@ -45,7 +45,8 @@ public class PlayerMovement : MonoBehaviour {
 				characterController = GetComponent<CharacterController>();
 				playerCollider = GetComponent<Collider>();
 				meshRenderer = GetComponentInChildren<MeshRenderer>();
-				groundLevel = transform.position.y;
+				spawnPositionQueue = new Queue<Vector3>();
+				FillSpawnPositionQueue(transform.position);
 		}
 
 
@@ -77,7 +78,6 @@ public class PlayerMovement : MonoBehaviour {
 
 
 		private void Move() {
-				Debug.Log("movement direction " +  (movementDirection * moveSpeed * Time.deltaTime).sqrMagnitude);
 				characterController.Move(movementDirection * moveSpeed * Time.deltaTime);
 		}
 
@@ -85,7 +85,14 @@ public class PlayerMovement : MonoBehaviour {
 		private void SphereCastTestGrounded() {
 				isGrounded = Physics.SphereCast(transform.position, characterController.radius, Vector3.down, out groundRaycastHit, isGroundedDistance);
 
+				if (groundRaycastHit.collider != null && groundRaycastHit.collider.tag == "KillTrigger") {
+						// transform.position = spawnPosition;
+						KillPlayer();
+				}
+
 				if (isGrounded) {
+						spawnPositionQueue.Enqueue(transform.position);
+						spawnPositionQueue.Dequeue();
 						meshRenderer.material.color = Color.green;
 				} else {
 						meshRenderer.material.color = Color.red;
@@ -93,7 +100,23 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 
+		private void KillPlayer() {
+				characterController.enabled = false;
+				characterController.transform.position = spawnPositionQueue.Dequeue();
+				characterController.enabled = true;
+				FillSpawnPositionQueue(transform.position);
+		}
+
+
 		private void OnDrawGizmos() {
 				Debug.DrawRay(transform.position, Vector3.down * isGroundedDistance, Color.red);
+		}
+
+
+		private void FillSpawnPositionQueue(Vector3 position) {
+				spawnPositionQueue.Clear();
+				for (int i = 0; i < 5; ++i) {
+						spawnPositionQueue.Enqueue(position);
+				}
 		}
 }
