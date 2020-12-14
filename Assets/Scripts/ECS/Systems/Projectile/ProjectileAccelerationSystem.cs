@@ -1,15 +1,16 @@
 ﻿using Unity.Entities;
 using Unity.Jobs;
-using Unity.Mathematics;
 using Unity.Physics;
-using UnityEngine;
 
 public class ProjectileAccelerationSystem : SystemBase {
 		protected override void OnUpdate() {
 				float deltaTime = Time.DeltaTime;
 
-				Entities.ForEach((ref ProjectileSpeedData speedData, in ProjectileAccelerationData accelerationData) => {
-						speedData.XZSpeed += accelerationData.XZAcceleration;
+				Entities
+				.WithAll<PhysicsVelocity, ProjectileAccelerationData>()
+				.WithNone<InitialProjectileSpatialData>()
+				.ForEach((ref PhysicsVelocity velocity, in ProjectileAccelerationData accelerationData) => {
+						velocity.Linear += accelerationData.acceleration * deltaTime;
 				}).Run();
 		}
 }
