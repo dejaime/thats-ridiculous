@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using Unity.Entities;
-using Unity.Jobs;
-using Unity.Mathematics;
 using Unity.Collections;
 
 public class Weapon : MonoBehaviour {
