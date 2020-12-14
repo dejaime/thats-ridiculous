@@ -10,6 +10,9 @@ public class SimpleGizmo : MonoBehaviour {
     float radius = 1f;
 
     private void OnDrawGizmos() {
+        Color oldColor = Gizmos.color;
+        Gizmos.color = color;
         Gizmos.DrawSphere(transform.position, radius);
+        Gizmos.color = oldColor;
     }
 }
