@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 470738601192178405}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 470738601453124311}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,10 +209,9 @@ GameObject:
   - component: {fileID: 470738601454197897}
   - component: {fileID: 470738601454197898}
   - component: {fileID: 470738601454197899}
-  - component: {fileID: 8157220668795907183}
   m_Layer: 0
   m_Name: CharacterController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee62daa9622cde468c7c3236674fae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 60
+  _moveSpeed: 30
   airSpeedMultiplier: 1.1
   jumpIntensity: 1
   gravity: 0.01
@@ -285,22 +284,6 @@ MonoBehaviour:
   horizontalSensitivity: 1.5
   minX: -60
   maxX: 60
---- !u!114 &8157220668795907183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470738601454197893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3bf0866dcbedda448bb7a8f289df52d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseProjectileCount: 10
-  shotsPerRow: 20
-  firingSpreadEulerAngle: 45
-  cooldown: 1
 --- !u!1 &470738601761418430
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +297,7 @@ GameObject:
   - component: {fileID: 470738601761418428}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,8 +375,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7103305867289133916}
   - component: {fileID: 4316524676834665938}
+  - component: {fileID: 6914111431721300634}
   m_Layer: 0
-  m_Name: Firing Spot
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,8 +409,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921afb99ef07aea4490f5d596eb58c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 1, a: 1}
+  color: {r: 1, g: 0.119318135, b: 0, a: 1}
   radius: 0.05
+--- !u!114 &6914111431721300634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045679317178148154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bf0866dcbedda448bb7a8f289df52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 470738601454197897}
+  baseProjectileCount: 10
+  shotsPerRow: 20
+  firingSpreadEulerAngle: 45
+  projectileSpeedMultiplier: 10
+  projectileAccelerationMultiplier: 50
+  cooldown: 0.2
+  projectilePrefab: {fileID: 1806235016987292445, guid: 6213147f32c66e644b4eaf752eda040f, type: 3}
 --- !u!1 &6852994142485637398
 GameObject:
   m_ObjectHideFlags: 0
