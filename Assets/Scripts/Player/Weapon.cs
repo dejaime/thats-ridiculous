@@ -51,8 +51,6 @@ public class Weapon : MonoBehaviour {
 		if (timeSinceLastShot < 0) {
 			timeSinceLastShot += cooldown;
 			if (!Input.GetMouseButton(0)) {
-				if (additionalProjectiles > 0)
-				Debug.Log(additionalProjectiles);
 				Shoot();
 			} else {
 				additionalProjectiles = Mathf.Min (additionalProjectiles +chargeUpRate * Time.deltaTime, maxCharge);
