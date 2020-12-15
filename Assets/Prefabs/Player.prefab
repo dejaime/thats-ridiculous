@@ -264,9 +264,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 30
   airSpeedMultiplier: 1.1
-  jumpIntensity: 1
-  gravity: 0.01
+  jumpIntensity: 45
+  gravity: 0.8
   isGroundedDistance: 1.2
+  movementDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &470738601454197899
 MonoBehaviour:
   m_ObjectHideFlags: 0
