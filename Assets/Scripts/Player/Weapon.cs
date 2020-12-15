@@ -9,10 +9,13 @@ public class Weapon : MonoBehaviour {
 	[SerializeField]
 	int baseProjectileCount = 10;
 
-	int additionalProjectiles = 0;
+	[SerializeField]
+	float chargeUpRate = 20;
 
 	[SerializeField]
-	int shotsPerRow = 20;
+	float maxCharge = 2000;
+
+	float additionalProjectiles = 0;
 
 	[SerializeField]
 	int firingSpreadEulerAngle = 45;
@@ -47,7 +50,13 @@ public class Weapon : MonoBehaviour {
 
 		if (timeSinceLastShot < 0) {
 			timeSinceLastShot += cooldown;
-			Shoot();
+			if (!Input.GetMouseButton(0)) {
+				if (additionalProjectiles > 0)
+				Debug.Log(additionalProjectiles);
+				Shoot();
+			} else {
+				additionalProjectiles = Mathf.Min (additionalProjectiles +chargeUpRate * Time.deltaTime, maxCharge);
+			}
 		}
 	}
 
@@ -55,7 +64,10 @@ public class Weapon : MonoBehaviour {
 	private void Shoot() {
 		EntityCommandBuffer commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
 
-		int totalProjectiles = baseProjectileCount + additionalProjectiles;
+		int totalProjectiles = baseProjectileCount + (int) additionalProjectiles;
+		float increaseSpread = 1 + 5 * additionalProjectiles/maxCharge;
+
+		additionalProjectiles = 0;
 
 		float eulerMinAngle = -45;
 		float eulerMaxAngle = 45;
@@ -67,14 +79,14 @@ public class Weapon : MonoBehaviour {
 			InitialProjectileSpatialData spatialData = new InitialProjectileSpatialData {
 				spawnPosition = transform.position,
 				speed = {
-					z = transform.forward.z * projectileSpeedMultiplier + playerController.velocity.z/2,
-					x = transform.forward.x * projectileSpeedMultiplier + playerController.velocity.x/2,
-					y = 2
+					z = Random.Range(-projectileSpeedMultiplier * increaseSpread, projectileSpeedMultiplier * increaseSpread),
+					x = Random.Range(-projectileSpeedMultiplier * increaseSpread, projectileSpeedMultiplier * increaseSpread),
+					y = Random.Range(-projectileSpeedMultiplier, projectileSpeedMultiplier),
 				},
-				acceleration = { 
+				acceleration = {
 					x = transform.forward.x * projectileAccelerationMultiplier,
 					z = transform.forward.z * projectileAccelerationMultiplier,
-					y = -3f
+					y = 0
 				},
 			};
 			commandBuffer.AddComponent<InitialProjectileSpatialData>(newProjectile, spatialData);
