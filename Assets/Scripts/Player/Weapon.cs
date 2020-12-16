@@ -32,7 +32,7 @@ public class Weapon : MonoBehaviour {
 	float timeSinceLastShot = 0f;
 
 	public GameObject projectilePrefab;
-	private Entity projectileEntity;
+	private Entity projectileEntityTemplate;
 
 	private EntityManager entityManager;
 	private BlobAssetStore blobAssetStore;
@@ -41,7 +41,7 @@ public class Weapon : MonoBehaviour {
 		entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 		blobAssetStore = new BlobAssetStore();
 		GameObjectConversionSettings goConversionSettings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, blobAssetStore);
-		projectileEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(projectilePrefab, goConversionSettings);
+		projectileEntityTemplate = GameObjectConversionUtility.ConvertGameObjectHierarchy(projectilePrefab, goConversionSettings);
 	}
 
 
@@ -73,7 +73,7 @@ public class Weapon : MonoBehaviour {
 		float angleStep = (eulerMaxAngle - eulerMinAngle) / totalProjectiles;
 
 		for (int i = 0; i < totalProjectiles; ++i) {
-			Entity newProjectile = entityManager.Instantiate(projectileEntity);
+			Entity newProjectile = entityManager.Instantiate(projectileEntityTemplate);
 			InitialProjectileSpatialData spatialData = new InitialProjectileSpatialData {
 				spawnPosition = transform.position,
 				speed = {
