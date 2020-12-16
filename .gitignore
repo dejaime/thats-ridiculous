@@ -1,4 +1,7 @@
 Assets/SimpleAirport/
+Assets/TextMesh Pro
+Assets/FarlandSkies/*
+.vsconfig
 omnisharp.json
 .vscode
 
@@ -429,5 +432,3 @@ MigrationBackup/
 .ionide/
 
 # End of https://www.toptal.com/developers/gitignore/api/vscode,unity,visualstudio
-Assets/TextMesh Pro
-.vsconfig
