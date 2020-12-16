@@ -51,9 +51,11 @@ public class PlayerMovement : MonoBehaviour {
 		FillSpawnPositionQueue(transform.position);
 	}
 
-
-	// Update is called once per frame
 	private void Update() {
+		
+	}
+
+	private void FixedUpdate() {
 		float hMovement = Input.GetAxisRaw("Horizontal");
 		float frontMovement = Input.GetAxisRaw("Vertical");
 		float jumpMovement = Input.GetAxisRaw("Jump");
@@ -74,9 +76,6 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		movementDirection = (hMovement * transform.right + frontMovement * transform.forward).normalized;
-	}
-
-	private void FixedUpdate() {
 		Move();
 	}
 
