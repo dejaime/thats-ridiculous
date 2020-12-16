@@ -47,7 +47,7 @@ public class PurpleCubeGrid : MonoBehaviour {
 					y = yCubePosition
 				};
 
-				PurpleGooCube pgc = new PurpleGooCube {
+				PurpleGooCubeData pgc = new PurpleGooCubeData {
 					gridPosition = {
 						x = position.x,
 						y = position.y
@@ -58,7 +58,7 @@ public class PurpleCubeGrid : MonoBehaviour {
 				//SPAWN Cube entity at position, set scale
 				Entity newCube = entityManager.Instantiate(cubeEntityTemplate);
 
-				commandBuffer.SetComponent<PurpleGooCube>(newCube, pgc);
+				commandBuffer.SetComponent<PurpleGooCubeData>(newCube, pgc);
 				commandBuffer.SetComponent<Translation>(newCube, new Translation { Value = position });
 				float3 scale = new float3 { y = 50f * Mathf.Sin((float)x / 10f) * Mathf.Sin((float)z / 10f), x = 3.5f, z = 3.5f };
 				commandBuffer.AddComponent<NonUniformScale>(newCube, new NonUniformScale { Value = scale });
