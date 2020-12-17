@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Unity.Entities;
 using Unity.Collections;
 
@@ -90,7 +90,11 @@ public class Weapon : MonoBehaviour {
 					y = 0
 				},
 			};
-			commandBuffer.AddComponent<InitialProjectileSpatialData>(newProjectile, spatialData);
+			commandBuffer.SetComponent<InitialProjectileSpatialData>(newProjectile, spatialData);
+			commandBuffer.SetComponent<ProjectileData>(newProjectile, new ProjectileData{
+				hitsLeft = 3,
+				scale = 1f
+			});
 		}
 
 		commandBuffer.Playback(entityManager);
