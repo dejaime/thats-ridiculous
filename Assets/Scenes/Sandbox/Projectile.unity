@@ -729,9 +729,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3bf0866dcbedda448bb7a8f289df52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
   baseProjectileCount: 10
-  shotsPerRow: 20
+  chargeUpRate: 20
+  maxCharge: 2000
   firingSpreadEulerAngle: 45
+  projectileSpeedMultiplier: 100
+  projectileAccelerationMultiplier: 10
   cooldown: 0
   projectilePrefab: {fileID: 1806235016987292445, guid: 6213147f32c66e644b4eaf752eda040f, type: 3}
 --- !u!4 &1975614301
