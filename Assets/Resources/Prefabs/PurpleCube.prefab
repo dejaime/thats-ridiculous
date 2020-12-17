@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3418340666523935052}
   - component: {fileID: 6992170730851156847}
   - component: {fileID: 9013959009925291364}
-  - component: {fileID: 6901710600445514656}
   - component: {fileID: 1439434469}
+  - component: {fileID: 4801735551218962507}
   m_Layer: 0
   m_Name: PurpleCube
   m_TagString: Untagged
@@ -227,22 +227,6 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
---- !u!114 &6901710600445514656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7118526098940961457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d3e7e2c48a344541a8e28d5718feeca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridPosition:
-    x: 0
-    y: 0
-  height: 0
 --- !u!114 &1439434469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,3 +240,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConversionMode: 0
+--- !u!114 &4801735551218962507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118526098940961457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f2875e59bb9b664f8df333f0076efcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridPosition:
+    x: 0
+    y: 0
+  height: 0
