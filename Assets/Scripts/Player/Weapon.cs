@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Unity.Entities;
 using Unity.Collections;
 
@@ -49,11 +49,14 @@ public class Weapon : MonoBehaviour {
 		timeSinceLastShot -= Time.deltaTime;
 
 		if (timeSinceLastShot < 0) {
-			timeSinceLastShot += cooldown;
 			if (!Input.GetMouseButton(0)) {
 				Shoot();
+				timeSinceLastShot += cooldown;
+				if (timeSinceLastShot < 0) {
+					timeSinceLastShot = 0;
+				}
 			} else {
-				additionalProjectiles = Mathf.Min (additionalProjectiles +chargeUpRate * Time.deltaTime, maxCharge);
+				additionalProjectiles = Mathf.Min (additionalProjectiles + chargeUpRate * Time.deltaTime, maxCharge);
 			}
 		}
 	}
