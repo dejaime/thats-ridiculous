@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 1806235016987292446}
   - component: {fileID: 6710417028293147367}
   - component: {fileID: 2030978082}
+  - component: {fileID: 3135161823542124345}
+  - component: {fileID: 4001095418278973329}
   m_Layer: 10
   m_Name: Projectile
   m_TagString: Projectile
@@ -321,3 +323,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToLive: 10
+--- !u!114 &3135161823542124345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806235016987292445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d05334de29a04f4a993a2236efa950d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitsLeft: 3
+  scale: 1
+--- !u!114 &4001095418278973329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806235016987292445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621031fe1437907419573d790fe962d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPosition:
+    x: 0
+    y: 0
+    z: 0
+  speed:
+    x: 0
+    y: 0
+    z: 0
+  acceleration:
+    x: 0
+    y: 0
+    z: 0
