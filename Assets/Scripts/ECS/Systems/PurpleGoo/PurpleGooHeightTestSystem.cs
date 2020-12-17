@@ -12,7 +12,7 @@ public class PurpleGooHeightTestSystem : SystemBase {
 		.WithAll<PurpleGooCubeData>()
 		.ForEach((ref PurpleGooCubeData cubeData) => {
 			x += 1.01f;
-			cubeData.height = 4 + Mathf.Sin(elapsedTime + x) * 30;
+			//cubeData.height = 4 + Mathf.Sin(elapsedTime + x) * 30;
 		}).Run();
 	}
 }
