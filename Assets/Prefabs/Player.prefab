@@ -426,7 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 470738601454197897}
   baseProjectileCount: 3
-  chargeUpRate: 2000
+  chargeUpRate: 200
   maxCharge: 2000
   firingSpreadEulerAngle: 45
   projectileSpeedMultiplier: 5
