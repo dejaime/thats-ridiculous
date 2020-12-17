@@ -52,7 +52,7 @@ public class PurpleCubeGrid : MonoBehaviour {
 						x = position.x,
 						y = position.y
 					},
-					height = 0
+					height = 30
 				};
 
 				//SPAWN Cube entity at position, set scale
