@@ -2008,7 +2008,7 @@ MonoBehaviour:
     Height: 29.811377
     Radius: 30.778502
     Axis: 2
-  m_CylinderSideCount: 20
+  m_CylinderSideCount: 8
   m_SphereRadius: 30.778502
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
@@ -4633,7 +4633,7 @@ MonoBehaviour:
     Height: 29.811377
     Radius: 30.686033
     Axis: 2
-  m_CylinderSideCount: 20
+  m_CylinderSideCount: 8
   m_SphereRadius: 30.686033
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
