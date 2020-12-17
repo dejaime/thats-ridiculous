@@ -9,9 +9,9 @@ public class ProjectileTimeToLiveSystem : SystemBase {
 
                 EntityCommandBuffer commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
                 
-				Entities.WithAll<ProjectileTimeToLiveData>().ForEach((Entity entity, ref ProjectileTimeToLiveData ttlData) => {
+				Entities.WithAll<ProjectileTimeToLiveData, ProjectileData>().ForEach((Entity entity, ref ProjectileTimeToLiveData ttlData, ref ProjectileData projectileData) => {
 						ttlData.timeToLive -= deltaTime;
-                        if (ttlData.timeToLive < 0) {
+                        if (ttlData.timeToLive < 0 || projectileData.hitsLeft <= 0) {
                             commandBuffer.AddComponent<DeleteEntityTag>(entity);
                         }
 				}).Run();
