@@ -18,9 +18,6 @@ public class Weapon : MonoBehaviour {
 	float additionalProjectiles = 0;
 
 	[SerializeField]
-	int firingSpreadEulerAngle = 45;
-
-	[SerializeField]
 	float projectileSpeedMultiplier = 100;
 
 	[SerializeField]
