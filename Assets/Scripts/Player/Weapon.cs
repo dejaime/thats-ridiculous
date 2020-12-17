@@ -89,7 +89,7 @@ public class Weapon : MonoBehaviour {
 			};
 			commandBuffer.SetComponent<InitialProjectileSpatialData>(newProjectile, spatialData);
 			commandBuffer.SetComponent<ProjectileData>(newProjectile, new ProjectileData{
-				hitsLeft = 3,
+				hitsLeft = 1,
 				scale = 1f
 			});
 		}
