@@ -52,7 +52,7 @@ public class PurpleCubeGrid : MonoBehaviour {
 						x = position.x,
 						y = position.y
 					},
-					height = 30
+					height = 50f * Mathf.Sin((float)x / 10f) * Mathf.Sin((float)z / 10f)
 				};
 
 				//SPAWN Cube entity at position, set scale
