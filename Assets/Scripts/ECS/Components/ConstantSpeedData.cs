@@ -3,5 +3,5 @@ using Unity.Mathematics;
 
 [GenerateAuthoringComponent]
 public struct ConstantSpeedData : IComponentData {
-    float2 constantSpeed;
+	public float3 constantSpeed;
 }

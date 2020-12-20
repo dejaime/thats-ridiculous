@@ -2,6 +2,6 @@
 
 [GenerateAuthoringComponent]
 public struct GooBomberData : IComponentData {
-    float timeSinceLastDrop;
-    float cooldown;
+	public float timeSinceLastDrop;
+	public float cooldown;
 }

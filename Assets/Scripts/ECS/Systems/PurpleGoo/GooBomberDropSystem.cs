@@ -1,6 +1,5 @@
-using UnityEngine;
 using Unity.Entities;
-using Unity.Mathematics;
+using Unity.Transforms;
 
 public class GooBomberDropSystem : SystemBase {
 	protected override void OnUpdate() {
@@ -9,11 +8,11 @@ public class GooBomberDropSystem : SystemBase {
 		Entities
 		.WithAll<GooBomberData, Translation>()
 		.ForEach((ref GooBomberData gooBomberData, in Translation translation) => {
-            gooBomberData.timeSinceLastDrop += deltaTime;
-            if (gooBomberData.timeSinceLastDrop > gooBomberData.cooldown) {
-                gooBomberData.timeSinceLastDrop -= gooBomberData.cooldown;
-                //DROP
-            }
+			gooBomberData.timeSinceLastDrop += deltaTime;
+			if (gooBomberData.timeSinceLastDrop > gooBomberData.cooldown) {
+				gooBomberData.timeSinceLastDrop -= gooBomberData.cooldown;
+				//DROP
+			}
 		}).Schedule();
 	}
 }
