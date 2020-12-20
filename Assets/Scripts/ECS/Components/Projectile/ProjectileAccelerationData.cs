@@ -3,5 +3,5 @@ using Unity.Mathematics;
 
 [GenerateAuthoringComponent]
 public struct ProjectileAccelerationData : IComponentData {
-    public float3 acceleration;
+	public float3 acceleration;
 }

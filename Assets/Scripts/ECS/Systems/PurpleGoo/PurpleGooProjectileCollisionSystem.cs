@@ -63,7 +63,7 @@ public class CubeHitEvent : SystemBase {
 	}
 
 	private static void OnHit(Entity projectile, Entity cube, ComponentDataFromEntity<ProjectileData> innerProjectileGroup, ComponentDataFromEntity<PurpleGooCubeData> innerCubeGroup) {
-		
+
 	}
 
 	protected override void OnUpdate() {
@@ -76,7 +76,7 @@ public class CubeHitEvent : SystemBase {
 			innerCubeGroup = GetComponentDataFromEntity<PurpleGooCubeData>(),
 		}.Schedule(stepPhysicsWorldSystem.Simulation,
 			ref buildPhysicsWorldSystem.PhysicsWorld, Dependency);
-		
+
 		Dependency.Complete();
 	}
 }

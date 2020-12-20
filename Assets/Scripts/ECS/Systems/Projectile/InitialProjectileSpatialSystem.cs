@@ -17,13 +17,13 @@ public class InitialProjectileSpatialSystem : SystemBase {
 			ref ProjectileAccelerationData accelerationData,
 			in InitialProjectileSpatialData initialSpatialData) => {
 
-			commandBuffer.RemoveComponent<InitialProjectileSpatialData>(entity);
+				commandBuffer.RemoveComponent<InitialProjectileSpatialData>(entity);
 
-			translation.Value = initialSpatialData.spawnPosition;
-			velocity.Linear = initialSpatialData.speed;
-			accelerationData.acceleration = initialSpatialData.acceleration;
+				translation.Value = initialSpatialData.spawnPosition;
+				velocity.Linear = initialSpatialData.speed;
+				accelerationData.acceleration = initialSpatialData.acceleration;
 
-		}).Run();
+			}).Run();
 
 		commandBuffer.Playback(EntityManager);
 		commandBuffer.Dispose();

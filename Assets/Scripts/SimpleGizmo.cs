@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 
 public class SimpleGizmo : MonoBehaviour {
-    [SerializeField]
-    Color color = Color.blue;
+	[SerializeField]
+	Color color = Color.blue;
 
-    [SerializeField]
-    float radius = 1f;
+	[SerializeField]
+	float radius = 1f;
 
-    private void OnDrawGizmos() {
-        Color oldColor = Gizmos.color;
-        Gizmos.color = color;
-        Gizmos.DrawSphere(transform.position, radius);
-        Gizmos.color = oldColor;
-    }
+	private void OnDrawGizmos() {
+		Color oldColor = Gizmos.color;
+		Gizmos.color = color;
+		Gizmos.DrawSphere(transform.position, radius);
+		Gizmos.color = oldColor;
+	}
 }
