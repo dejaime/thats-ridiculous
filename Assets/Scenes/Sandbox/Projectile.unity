@@ -733,7 +733,6 @@ MonoBehaviour:
   baseProjectileCount: 10
   chargeUpRate: 20
   maxCharge: 2000
-  firingSpreadEulerAngle: 45
   projectileSpeedMultiplier: 100
   projectileAccelerationMultiplier: 10
   cooldown: 0
