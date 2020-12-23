@@ -48,10 +48,8 @@ public class EntityCollisionSystem : SystemBase {
 				cube = entityA;
 			} else {
 				//Not a hit, not cube X projectile
-				Debug.Log("not COL");
 				return;
 			}
-			Debug.Log("COL");
 
 			ProjectileData projectileData = innerProjectileGroup[projectile];
 			PurpleGooCubeData cubeData = innerCubeGroup[cube];
