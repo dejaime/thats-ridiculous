@@ -9,7 +9,7 @@ public class ConstantSpeedSystem : SystemBase {
 			Entity entity,
 			ref Translation translation,
 			in ConstantSpeedData constantSpeedData) => {
-				translation.Value += constantSpeedData.constantSpeed;
+				translation.Value += constantSpeedData.constantSpeed * deltaTime;
 			}).Schedule();
 	}
 }
