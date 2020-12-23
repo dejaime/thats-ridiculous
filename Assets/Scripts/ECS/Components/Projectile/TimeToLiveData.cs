@@ -1,6 +1,6 @@
 using Unity.Entities;
 
 [GenerateAuthoringComponent]
-public struct ProjectileTimeToLiveData : IComponentData {
+public struct TimeToLiveData : IComponentData {
 	public float timeToLive;
 }
