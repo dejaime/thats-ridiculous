@@ -1,3 +1,4 @@
+using UnityEngine;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Physics;
@@ -5,7 +6,7 @@ using Unity.Physics.Systems;
 
 [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
 [UpdateAfter(typeof(EndFramePhysicsSystem))]
-public class CubeHitEvent : SystemBase {
+public class EntityCollisionSystem : SystemBase {
 	BuildPhysicsWorld buildPhysicsWorldSystem;
 	StepPhysicsWorld stepPhysicsWorldSystem;
 	EntityQuery projectileGroup, purpleCubeGroup;
@@ -47,8 +48,10 @@ public class CubeHitEvent : SystemBase {
 				cube = entityA;
 			} else {
 				//Not a hit, not cube X projectile
+				Debug.Log("not COL");
 				return;
 			}
+			Debug.Log("COL");
 
 			ProjectileData projectileData = innerProjectileGroup[projectile];
 			PurpleGooCubeData cubeData = innerCubeGroup[cube];
@@ -62,9 +65,6 @@ public class CubeHitEvent : SystemBase {
 		}
 	}
 
-	private static void OnHit(Entity projectile, Entity cube, ComponentDataFromEntity<ProjectileData> innerProjectileGroup, ComponentDataFromEntity<PurpleGooCubeData> innerCubeGroup) {
-
-	}
 
 	protected override void OnUpdate() {
 		if (projectileGroup.CalculateEntityCount() == 0) {
