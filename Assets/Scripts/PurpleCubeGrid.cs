@@ -52,7 +52,9 @@ public class PurpleCubeGrid : MonoBehaviour {
 						x = position.x,
 						y = position.y
 					},
-					height = 50f * Mathf.Sin((float)x / 10f) * Mathf.Sin((float)z / 10f)
+					//Negative height deactivates the cubes. Increasing their height beyond 0 will activate them.
+					//By deactivate I don't mean making them actually innactive, but only positioned outside of the play area.
+					height = -1f
 				};
 
 				//SPAWN Cube entity at position, set scale
