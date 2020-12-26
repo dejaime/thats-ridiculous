@@ -74,10 +74,6 @@ public class PurpleCubeGrid : MonoBehaviour {
 		commandBuffer.Dispose();
 	}
 
-	void Update() {
-
-	}
-
 	private void OnDestroy() {
 		blobAssetStore.Dispose();
 	}
