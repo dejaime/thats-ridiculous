@@ -9,7 +9,7 @@ using Unity.Physics.Systems;
 public class EntityCollisionSystem : SystemBase {
 	BuildPhysicsWorld buildPhysicsWorldSystem;
 	StepPhysicsWorld stepPhysicsWorldSystem;
-	EntityQuery projectileGroup, purpleCubeGroup;
+	EntityQuery projectileGroup, purpleCubeGroup, bombGroup, groundGroup;
 
 	protected override void OnCreate() {
 		buildPhysicsWorldSystem = World.GetOrCreateSystem<BuildPhysicsWorld>();
@@ -22,6 +22,14 @@ public class EntityCollisionSystem : SystemBase {
 		purpleCubeGroup = GetEntityQuery(new EntityQueryDesc {
 			All = new ComponentType[] { typeof(PurpleGooCubeData) }
 		});
+
+		bombGroup = GetEntityQuery(new EntityQueryDesc {
+			All = new ComponentType[] { typeof(GooBombData) }
+		});
+
+		groundGroup = GetEntityQuery(new EntityQueryDesc {
+			All = new ComponentType[] { typeof(GroundTag) }
+		});
 	}
 
 	[BurstCompile]
@@ -29,7 +37,11 @@ public class EntityCollisionSystem : SystemBase {
 		public ComponentDataFromEntity<ProjectileData> innerProjectileGroup;
 		public ComponentDataFromEntity<PurpleGooCubeData> innerCubeGroup;
 
+		public ComponentDataFromEntity<GroundTag> innerGroundGroup;
+		public ComponentDataFromEntity<GooBombData> innerBombGroup;
+
 		public void Execute(CollisionEvent collisionEvent) {
+			Debug.Log("COLLISION EVENT");
 			Entity entityA = collisionEvent.EntityA;
 			Entity entityB = collisionEvent.EntityB;
 
@@ -47,7 +59,24 @@ public class EntityCollisionSystem : SystemBase {
 				projectile = entityB;
 				cube = entityA;
 			} else {
-				//Not a hit, not cube X projectile
+				bool isBodyAGround = innerGroundGroup.HasComponent(entityA);
+				bool isBodyBGround = innerGroundGroup.HasComponent(entityB);
+
+				bool isBodyABomb = innerBombGroup.HasComponent(entityA);
+				bool isBodyBBomb = innerBombGroup.HasComponent(entityB);
+
+				Entity bomb;
+				if (isBodyAGround && isBodyBBomb) {
+					bomb = entityB;
+				} else if (isBodyBGround && isBodyABomb) {
+					bomb = entityA;
+				} else {
+					return;
+				}
+
+				GooBombData bombData = innerBombGroup[bomb];
+				bombData.hitGround = true;
+
 				return;
 			}
 
@@ -65,13 +94,15 @@ public class EntityCollisionSystem : SystemBase {
 
 
 	protected override void OnUpdate() {
-		if (projectileGroup.CalculateEntityCount() == 0) {
+		if (projectileGroup.CalculateEntityCount() == 0 && bombGroup.CalculateEntityCount() == 0) {
 			return;
 		}
 
 		Dependency = new CollisionCubeHitJob {
 			innerProjectileGroup = GetComponentDataFromEntity<ProjectileData>(),
 			innerCubeGroup = GetComponentDataFromEntity<PurpleGooCubeData>(),
+			innerGroundGroup = GetComponentDataFromEntity<GroundTag>(),
+			innerBombGroup = GetComponentDataFromEntity<GooBombData>(),
 		}.Schedule(stepPhysicsWorldSystem.Simulation,
 			ref buildPhysicsWorldSystem.PhysicsWorld, Dependency);
 
