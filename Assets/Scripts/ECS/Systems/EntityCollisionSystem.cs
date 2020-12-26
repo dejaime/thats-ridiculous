@@ -41,7 +41,6 @@ public class EntityCollisionSystem : SystemBase {
 		public ComponentDataFromEntity<GooBombData> innerBombGroup;
 
 		public void Execute(CollisionEvent collisionEvent) {
-			Debug.Log("COLLISION EVENT");
 			Entity entityA = collisionEvent.EntityA;
 			Entity entityB = collisionEvent.EntityB;
 
