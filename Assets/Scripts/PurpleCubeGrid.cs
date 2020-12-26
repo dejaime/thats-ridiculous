@@ -22,6 +22,9 @@ public class PurpleCubeGrid : MonoBehaviour {
 	[SerializeField]
 	private GameObject cubePrefab;
 
+	[SerializeField]
+	private float initialCubeHeight = -1f;
+
 
 	private Entity cubeEntityTemplate;
 	private EntityManager entityManager;
@@ -54,7 +57,7 @@ public class PurpleCubeGrid : MonoBehaviour {
 					},
 					//Negative height deactivates the cubes. Increasing their height beyond 0 will activate them.
 					//By deactivate I don't mean making them actually innactive, but only positioned outside of the play area.
-					height = -1f
+					height = initialCubeHeight
 				};
 
 				//SPAWN Cube entity at position, set scale
