@@ -76,6 +76,7 @@ public class EntityCollisionSystem : SystemBase {
 
 				GooBombData bombData = innerBombGroup[bomb];
 				bombData.hitGround = true;
+				innerBombGroup[bomb] = bombData;
 
 				return;
 			}
