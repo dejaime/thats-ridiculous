@@ -26,13 +26,13 @@ Yes it is!
 
 # How it works
 
-This minigame runs on Unity's new DOTS, Data Oriented Technology Stack. Most of its simulation consists of tens of thousands of entities being simulated and manipulated in parallel.
+This minigame runs on Unity's new DOTS, Data Oriented Technology Stack. Most of it consist of tens of thousands of entities being simulated and manipulated in parallel.
 
 Currently, the game starts with 18k+ active entities. The player has a cube shooting weapon that shoots hundreds of cubes every few seconds, able to charge it up to 2000 cubes in a single shot!
 
 This uses Unity.Physics, Unity.Rendering.Hybrid, Unity.Entities and other DOTS related packages.
 
-Still, the player still uses traditional MonoBehaviour, CharacterController, resulting in a hybrid approach to Unity ECS.
+The player uses traditional MonoBehaviour, CharacterController, resulting in a hybrid approach to Unity ECS.
 
 # License
 
@@ -43,3 +43,5 @@ I cannot distribute these assets, and they follow their own licenses.
 They are available in their store pages:
 - https://assetstore.unity.com/packages/3d/environments/industrial/simple-airport-cartoon-assets-37604
 - (Free Asset) https://assetstore.unity.com/packages/2d/textures-materials/sky/farland-skies-cloudy-crown-60004
+
+Wand asset is CC0, made by `dummyfish`: https://opengameart.org/content/rpg-item-collection-1
