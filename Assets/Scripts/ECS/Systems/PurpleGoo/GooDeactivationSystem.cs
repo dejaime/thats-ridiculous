@@ -23,7 +23,7 @@ public class GooDeactivationSystem : SystemBase {
 				//If cube height is zero or negative, move it out of the play area	
 				if (cubeData.active) {
 					cubeData.active = false;
-					translation.Value.y = -100f;
+					translation.Value.y = -1000f;
 					commandBuffer.AddComponent<InactiveGooCubeTag>(entity);
 				}
 			} else {
