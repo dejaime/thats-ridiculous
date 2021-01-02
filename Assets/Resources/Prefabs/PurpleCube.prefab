@@ -108,7 +108,7 @@ MonoBehaviour:
     z: 1
   m_PrimitiveOrientation:
     Value:
-      x: -0
+      x: 0
       y: 0
       z: 0
     RotationOrder: 4
@@ -146,7 +146,7 @@ MonoBehaviour:
         Value: 0
         CombineMode: 2
     m_BelongsToCategories:
-      m_Override: 0
+      m_Override: 1
       m_Value:
         Category00: 0
         Category01: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
         Category30: 0
         Category31: 0
     m_CollidesWithCategories:
-      m_Override: 0
+      m_Override: 1
       m_Value:
         Category00: 0
         Category01: 1
@@ -303,7 +303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2875e59bb9b664f8df333f0076efcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridPosition:
+  gridIndex:
     x: 0
     y: 0
+    z: 0
   height: 0
+  pendingDamage: 0
+  active: 0
