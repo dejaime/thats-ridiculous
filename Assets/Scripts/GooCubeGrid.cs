@@ -96,6 +96,15 @@ public class GooCubeGrid : MonoBehaviour {
 	private void OnDestroy() {
 		blobAssetStore.Dispose();
 	}
+
+	public void SetCubeHeight(int x, int z, float height) {
+		if (gridCubeHeightMatrix == null) return;
+		gridCubeHeightMatrix[x, z] = height;
+	}
+
+	public float GetCubeHeight(int x, int z) {
+		return gridCubeHeightMatrix[x, z];
+	}
 }
 
 //Using this custom struct to avoid the confusion caused by X, Y in int2, or X, Y, Z with int3.
