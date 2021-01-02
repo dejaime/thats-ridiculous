@@ -3,6 +3,8 @@ using Unity.Mathematics;
 
 [GenerateAuthoringComponent]
 public struct PurpleGooCubeData : IComponentData {
-	public int2 gridPosition;
+	public int3 gridIndex;
 	public float height;
+
+	public bool active;
 }
