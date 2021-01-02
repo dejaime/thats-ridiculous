@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5657804824171562919}
   - component: {fileID: 5657804824169568612}
   - component: {fileID: 5657804824169568613}
-  - component: {fileID: 5657804824169568614}
   - component: {fileID: 5657804824169568635}
+  - component: {fileID: 1686009027}
   m_Layer: 30
   m_Name: Bomber
   m_TagString: Ground
@@ -114,20 +114,6 @@ MonoBehaviour:
     x: 100
     y: 0
     z: 100
---- !u!114 &5657804824169568614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5657804824169568615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10e74d5c27a4f04f849e1c2e568177d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeSinceLastDrop: 0
-  cooldown: 0
 --- !u!114 &5657804824169568635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,3 +134,16 @@ MonoBehaviour:
     x: 255
     y: 255
     z: 255
+--- !u!114 &1686009027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5657804824169568615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a49ecacb9275f0418fabb0de7bf65f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombPrefab: {fileID: 7607092656445314941, guid: 7498467ea49ab78449de0d0ee2a6ba9a, type: 3}
