@@ -26,7 +26,7 @@ Yes it is!
 
 # How it works
 
-This minigame runs on Unity's new DOTS, Data Oriented Technology Stack. Most of it consist of tens of thousands of entities being simulated and manipulated in parallel.
+This game runs on Unity's new DOTS, Data Oriented Technology Stack. Most of it consist of tens of thousands of entities being simulated and manipulated in parallel.
 
 Currently, the game starts with 18k+ active entities. The player has a cube shooting weapon that shoots hundreds of cubes every few seconds, able to charge it up to 2000 cubes in a single shot!
 
