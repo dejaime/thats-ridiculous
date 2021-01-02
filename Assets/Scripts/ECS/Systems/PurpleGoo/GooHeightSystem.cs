@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
 
-public class PurpleGooHeightSystem : SystemBase {
+public class GooHeightSystem : SystemBase {
 	protected override void OnUpdate() {
 		float deltaTime = Time.DeltaTime;
 

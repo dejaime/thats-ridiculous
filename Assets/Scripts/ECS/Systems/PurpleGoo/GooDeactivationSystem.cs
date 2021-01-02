@@ -4,7 +4,7 @@ using Unity.Collections;
 using Unity.Physics;
 using Unity.Transforms;
 
-public class PurpleGooDeactivationSystem : SystemBase {
+public class GooDeactivationSystem : SystemBase {
 
 	EndSimulationEntityCommandBufferSystem endSimulationEcbSystem;
 

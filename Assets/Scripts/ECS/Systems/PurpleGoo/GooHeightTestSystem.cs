@@ -2,7 +2,7 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 
-public class PurpleGooHeightTestSystem : SystemBase {
+public class GooHeightTestSystem : SystemBase {
 	protected override void OnUpdate() {
 		float deltaTime = (float)Time.DeltaTime;
 
