@@ -11,11 +11,10 @@ public class GooApplyPendingDamageSystem : SystemBase {
 		.WithAll<PurpleGooCubeData>()
 		.WithNone<InactiveGooCubeTag>()
 		.ForEach((ref PurpleGooCubeData cubeData) => {
-			// cubeData.height -= cubeData.pendingDamage;
 			GooCubeGrid.Instance.SetCubeHeight(
 					cubeData.gridIndex.x,
 					cubeData.gridIndex.z,
-					cubeData.height - cubeData.pendingDamage
+					GooCubeGrid.Instance.GetCubeHeight(cubeData.gridIndex.x, cubeData.gridIndex.z) - cubeData.pendingDamage
 				);
 			cubeData.pendingDamage = 0;
 		}).WithoutBurst().Schedule();
