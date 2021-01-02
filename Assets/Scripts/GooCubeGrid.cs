@@ -56,6 +56,8 @@ public class GooCubeGrid : MonoBehaviour {
 
 		EntityCommandBuffer commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
 
+		gridCubeHeightMatrix = new float[gridSize.x, gridSize.z];
+
 		for (int x = 0; x < gridSize.x; ++x) {
 			for (int z = 0; z < gridSize.z; ++z) {
 				//Calculate POSITION with offset
@@ -65,6 +67,8 @@ public class GooCubeGrid : MonoBehaviour {
 					y = yCubePosition
 				};
 
+				gridCubeHeightMatrix[x, z] = initialCubeHeight;
+
 				PurpleGooCubeData pgc = new PurpleGooCubeData {
 					gridPosition = {
 						x = position.x,
@@ -72,7 +76,7 @@ public class GooCubeGrid : MonoBehaviour {
 					},
 					//Negative height deactivates the cubes. Increasing their height beyond 0 will activate them.
 					//By deactivate I don't mean making them actually innactive, but only positioned outside of the play area.
-					height = initialCubeHeight
+					height = gridCubeHeightMatrix[x, z]
 				};
 
 				//SPAWN Cube entity at position, set scale
