@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 1753500706}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -712,6 +712,10 @@ PrefabInstance:
     - target: {fileID: 7607092656445314941, guid: 7498467ea49ab78449de0d0ee2a6ba9a, type: 3}
       propertyPath: m_Name
       value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607092656445314941, guid: 7498467ea49ab78449de0d0ee2a6ba9a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7498467ea49ab78449de0d0ee2a6ba9a, type: 3}
