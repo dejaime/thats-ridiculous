@@ -11,6 +11,7 @@ public class EntityCollisionSystem : SystemBase {
 	StepPhysicsWorld stepPhysicsWorldSystem;
 	EntityQuery projectileGroup, purpleCubeGroup, bombGroup, groundGroup;
 
+
 	protected override void OnCreate() {
 		buildPhysicsWorldSystem = World.GetOrCreateSystem<BuildPhysicsWorld>();
 		stepPhysicsWorldSystem = World.GetOrCreateSystem<StepPhysicsWorld>();
@@ -20,7 +21,8 @@ public class EntityCollisionSystem : SystemBase {
 		});
 
 		purpleCubeGroup = GetEntityQuery(new EntityQueryDesc {
-			All = new ComponentType[] { typeof(PurpleGooCubeData) }
+			All = new ComponentType[] { typeof(PurpleGooCubeData) },
+			None = new ComponentType[] { typeof(InactiveGooCubeTag) },
 		});
 
 		bombGroup = GetEntityQuery(new EntityQueryDesc {
@@ -82,8 +84,9 @@ public class EntityCollisionSystem : SystemBase {
 
 			ProjectileData projectileData = innerProjectileGroup[projectile];
 			PurpleGooCubeData cubeData = innerCubeGroup[cube];
-			if (projectileData.hitsLeft > 0 && cubeData.height > 0) {
-				cubeData.height -= 5f;
+
+			if (projectileData.hitsLeft > 0 && cubeData.pendingDamage < cubeData.height) {
+				cubeData.pendingDamage += 5;
 				innerCubeGroup[cube] = cubeData;
 
 				projectileData.hitsLeft -= 1;
@@ -102,7 +105,7 @@ public class EntityCollisionSystem : SystemBase {
 			innerProjectileGroup = GetComponentDataFromEntity<ProjectileData>(),
 			innerCubeGroup = GetComponentDataFromEntity<PurpleGooCubeData>(),
 			innerGroundGroup = GetComponentDataFromEntity<GroundTag>(),
-			innerBombGroup = GetComponentDataFromEntity<GooBombData>(),
+			innerBombGroup = GetComponentDataFromEntity<GooBombData>()
 		}.Schedule(stepPhysicsWorldSystem.Simulation,
 			ref buildPhysicsWorldSystem.PhysicsWorld, Dependency);
 
