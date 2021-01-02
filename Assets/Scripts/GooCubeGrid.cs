@@ -47,6 +47,18 @@ public class GooCubeGrid : MonoBehaviour {
 	private BlobAssetStore blobAssetStore;
 
 
+	[SerializeField]
+	float spreadCooldown = 0.5f;
+
+	[SerializeField]
+	float spreadStrength = 2f;
+
+	[SerializeField]
+	private float spreadDeltaFactor = 4f;
+
+	private float timeSinceLastSpread = 0f;
+
+
 	void Start() {
 		gridSize = gridSizeInspectorXZ;
 
@@ -85,7 +97,7 @@ public class GooCubeGrid : MonoBehaviour {
 				Entity newCube = entityManager.Instantiate(cubeEntityTemplate);
 
 				if (gridCubeHeightMatrix[x, z] < 0) {
-					commandBuffer.AddComponent<InactiveGooCubeTag>(newCube, new InactiveGooCubeTag {});
+					commandBuffer.AddComponent<InactiveGooCubeTag>(newCube, new InactiveGooCubeTag { });
 					pgc.active = false;
 				} else {
 					pgc.active = true;
@@ -95,7 +107,7 @@ public class GooCubeGrid : MonoBehaviour {
 				commandBuffer.SetComponent<Translation>(newCube, new Translation { Value = position });
 				float3 scale = new float3 { y = 3.5f, x = 3.5f, z = 3.5f };
 				commandBuffer.AddComponent<NonUniformScale>(newCube, new NonUniformScale { Value = scale });
-				
+
 			}
 		}
 
@@ -106,6 +118,12 @@ public class GooCubeGrid : MonoBehaviour {
 	private void OnDestroy() {
 		blobAssetStore.Dispose();
 	}
+
+
+	private void Update() {
+		SpreadGoo();
+	}
+
 
 	public void SetCubeHeight(int x, int z, float height) {
 		if (gridCubeHeightMatrix == null) return;
@@ -120,7 +138,7 @@ public class GooCubeGrid : MonoBehaviour {
 		int3 index = PositionToIndex(bombDropX, bombDropZ);
 		int x = index.x;
 		int z = index.z;
-		
+
 		for (int i = x - 5; i <= x + 5; ++i) {
 			for (int j = z - 5; j <= z + 5; ++j) {
 				if (i <= 0 || i >= gridSize.x - 1 || j <= 0 || j >= gridSize.z - 1) {
@@ -143,6 +161,38 @@ public class GooCubeGrid : MonoBehaviour {
 			y = 0,
 			z = (int)indexZ
 		};
+	}
+
+
+	private void SpreadGoo() {
+		timeSinceLastSpread += Time.deltaTime;
+		if (timeSinceLastSpread >= spreadCooldown) {
+			timeSinceLastSpread -= spreadCooldown;
+			for (int i = 1; i < gridSize.x - 1; ++i) {
+				for (int j = 1; j < gridSize.z - 1; ++j) {
+					SpreadCube(i, j);
+				}
+			}
+		}
+	}
+
+
+	private void SpreadCube(int x, int z) {
+		if (gridCubeHeightMatrix[x, z] - gridCubeHeightMatrix[x + 1, z] > spreadStrength * spreadDeltaFactor) {
+			gridCubeHeightMatrix[x + 1, z] += spreadStrength;
+			gridCubeHeightMatrix[x, z] -= spreadStrength;
+		} else if (gridCubeHeightMatrix[x + 1, z] - gridCubeHeightMatrix[x, z] > spreadStrength * spreadDeltaFactor) {
+			gridCubeHeightMatrix[x + 1, z] -= spreadStrength;
+			gridCubeHeightMatrix[x, z] += spreadStrength;
+		}
+
+		if (gridCubeHeightMatrix[x, z] - gridCubeHeightMatrix[x, z + 1] > spreadStrength * spreadDeltaFactor) {
+			gridCubeHeightMatrix[x, z + 1] += spreadStrength;
+			gridCubeHeightMatrix[x, z] -= spreadStrength;
+		} else if (gridCubeHeightMatrix[x, z + 1] - gridCubeHeightMatrix[x, z] > spreadStrength * spreadDeltaFactor) {
+			gridCubeHeightMatrix[x, z + 1] -= spreadStrength;
+			gridCubeHeightMatrix[x, z] += spreadStrength;
+		}
 	}
 }
 
