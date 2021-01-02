@@ -14,7 +14,7 @@ public class GooDeactivationSystem : SystemBase {
 	}
 
 	protected override void OnUpdate() {
-		EntityCommandBuffer commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
+		EntityCommandBuffer.ParallelWriter commandBuffer = endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
 
 		Entities
 		.WithAll<Translation, PurpleGooCubeData>()
@@ -24,20 +24,19 @@ public class GooDeactivationSystem : SystemBase {
 				if (cubeData.active) {
 					cubeData.active = false;
 					translation.Value.y = -1000f;
-					commandBuffer.AddComponent<InactiveGooCubeTag>(entity);
+					commandBuffer.AddComponent<InactiveGooCubeTag>(entityInQueryIndex, entity);
 				}
 			} else {
 				// Move it back to the play area otherwise (but only if still inactive)
 				if (!cubeData.active) {
 					cubeData.active = true;
 					translation.Value.y = 1;
-					commandBuffer.RemoveComponent<InactiveGooCubeTag>(entity);
+					commandBuffer.RemoveComponent<InactiveGooCubeTag>(entityInQueryIndex, entity);
 				}
 			}
-		}).Run();
+		}).ScheduleParallel();
 
-		commandBuffer.Playback(EntityManager);
-		commandBuffer.Dispose();
+		endSimulationEcbSystem.AddJobHandleForProducer(Dependency);
 	}
 }
 
