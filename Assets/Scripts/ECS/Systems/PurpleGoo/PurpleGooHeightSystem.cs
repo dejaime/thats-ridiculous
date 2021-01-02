@@ -10,8 +10,13 @@ public class PurpleGooHeightSystem : SystemBase {
 
 		Entities
 		.WithAll<NonUniformScale, PhysicsCollider, PurpleGooCubeData>()
-		.ForEach((ref NonUniformScale nonUniformScale, ref Translation translation, ref PhysicsCollider collider, in PurpleGooCubeData cubeData) => {
-			nonUniformScale.Value.y = cubeData.height;
+		.ForEach((ref NonUniformScale nonUniformScale, ref PhysicsCollider collider, ref PurpleGooCubeData cubeData, in Translation translation) => {
+			float colliderHeight = cubeData.height;
+			if (cubeData.height < 0.01f) {
+				colliderHeight = 0.01f;
+			}
+
+			nonUniformScale.Value.y = colliderHeight;
 			//Look, I know... unsafe code is bad, ugly, and all
 			//		sorry all, rustaceans especially
 			//		there's no other way of modifying a collider at runtime...
@@ -21,10 +26,11 @@ public class PurpleGooHeightSystem : SystemBase {
 				geometry.Size = new float3 {
 					x = geometry.Size.x,
 					z = geometry.Size.z,
-					y = cubeData.height > 0.01f ? cubeData.height : 0.01f
+					y = colliderHeight
 				};
 				boxColliderPtr->Geometry = geometry;
 			}
+
 		}).Schedule();
 	}
 }
