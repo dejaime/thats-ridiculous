@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -115,6 +115,26 @@ public class GooCubeGrid : MonoBehaviour {
 	public float GetCubeHeight(int x, int z) {
 		return gridCubeHeightMatrix[x, z];
 	}
+
+	public void Explode(float bombDropX, float bombDropZ, float size) {
+		int3 index = PositionToIndex(bombDropX, bombDropZ);
+		int x = index.x;
+		int z = index.z;
+		
+		for (int i = x - 5; i <= x + 5; ++i) {
+			for (int j = z - 5; j <= z + 5; ++j) {
+				if (i <= 0 || i >= gridSize.x - 1 || j <= 0 || j >= gridSize.z - 1) {
+					continue;
+				} else {
+					if (gridCubeHeightMatrix[i, j] <= 0) {
+						gridCubeHeightMatrix[i, j] = 0;
+					}
+					gridCubeHeightMatrix[i, j] += size;
+				}
+			}
+		}
+	}
+
 	public int3 PositionToIndex(float x, float z) {
 		float indexX = (x - cubePositionOffsetXZ.x) / cubeSize;
 		float indexZ = (z - cubePositionOffsetXZ.z) / cubeSize;
