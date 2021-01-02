@@ -1,10 +1,25 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-public class PurpleCubeGrid : MonoBehaviour {
+public class GooCubeGrid : MonoBehaviour {
+
+	private static GooCubeGrid _instance;
+
+	public static GooCubeGrid Instance { get { return _instance; } }
+
+
+	private void Awake() {
+		if (_instance != null && _instance != this) {
+			Destroy(this.gameObject);
+		} else {
+			_instance = this;
+		}
+	}
+
+
 	[SerializeField]
 	private GridSize gridSizeInspectorXZ;
 
