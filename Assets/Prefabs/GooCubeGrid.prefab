@@ -48,11 +48,12 @@ MonoBehaviour:
     x: 105
     z: 179
   cubeSize: 4
-  yCubePosition: -7
+  yCubePosition: -100
   cubePositionOffsetXZ:
     x: -126
     z: -511
   cubePrefab: {fileID: 7118526098940961457, guid: 0b4264bd912b6c848b4ad9b4a56f743c, type: 3}
+  initialCubeHeight: -1
 --- !u!1 &3244034470314891824
 GameObject:
   m_ObjectHideFlags: 0
