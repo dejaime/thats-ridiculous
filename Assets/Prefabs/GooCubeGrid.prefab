@@ -48,7 +48,7 @@ MonoBehaviour:
     x: 105
     z: 179
   cubeSize: 4
-  yCubePosition: -100
+  yCubePosition: -1000
   cubePositionOffsetXZ:
     x: -126
     z: -511
@@ -56,7 +56,7 @@ MonoBehaviour:
   initialCubeHeight: -1
   spreadCooldown: 0.1
   spreadStrength: 1
-  timeSinceLastSpread: 0
+  spreadDeltaFactor: 4
 --- !u!1 &3244034470314891824
 GameObject:
   m_ObjectHideFlags: 0
