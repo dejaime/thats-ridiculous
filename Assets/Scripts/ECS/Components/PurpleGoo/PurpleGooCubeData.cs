@@ -5,6 +5,7 @@ using Unity.Mathematics;
 public struct PurpleGooCubeData : IComponentData {
 	public int3 gridIndex;
 	public float height;
+	public float pendingDamage;
 
 	public bool active;
 }
