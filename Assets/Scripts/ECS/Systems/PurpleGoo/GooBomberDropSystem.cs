@@ -32,11 +32,15 @@ public class GooBomberDropSystem : SystemBase {
 					z = translation.Value.z
 				};
 
+				GooBombData bombData = new GooBombData {
+					bombSize = gooBomberData.bombSize
+				};
+
 				commandBuffer.SetComponent<Translation>(entityInQueryIndex, bomb, bombTranslation);
+				commandBuffer.SetComponent<GooBombData>(entityInQueryIndex, bomb, bombData);
 			}
 		}).ScheduleParallel();
 
 		entityCommandBufferSystem.AddJobHandleForProducer(Dependency);
 	}
-
 }
