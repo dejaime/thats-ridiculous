@@ -27,7 +27,7 @@ public class GooCubeGrid : MonoBehaviour {
 	private int cubeSize;
 
 	[SerializeField]
-	private int yCubePosition = -100;
+	private int yCubePosition = -1000;
 
 	[SerializeField]
 	private GridSize cubePositionOffsetXZ;
