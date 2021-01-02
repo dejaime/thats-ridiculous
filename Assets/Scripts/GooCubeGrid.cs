@@ -70,9 +70,10 @@ public class GooCubeGrid : MonoBehaviour {
 				gridCubeHeightMatrix[x, z] = initialCubeHeight;
 
 				PurpleGooCubeData pgc = new PurpleGooCubeData {
-					gridPosition = {
-						x = position.x,
-						y = position.y
+					gridIndex = {
+						x = x,
+						z = z,
+						y = 0
 					},
 					//Negative height deactivates the cubes. Increasing their height beyond 0 will activate them.
 					//By deactivate I don't mean making them actually innactive, but only positioned outside of the play area.
@@ -91,8 +92,9 @@ public class GooCubeGrid : MonoBehaviour {
 
 				commandBuffer.SetComponent<PurpleGooCubeData>(newCube, pgc);
 				commandBuffer.SetComponent<Translation>(newCube, new Translation { Value = position });
-				float3 scale = new float3 { y = 50f * Mathf.Sin((float)x / 10f) * Mathf.Sin((float)z / 10f), x = 3.5f, z = 3.5f };
+				float3 scale = new float3 { y = 3.5f, x = 3.5f, z = 3.5f };
 				commandBuffer.AddComponent<NonUniformScale>(newCube, new NonUniformScale { Value = scale });
+				
 			}
 		}
 
