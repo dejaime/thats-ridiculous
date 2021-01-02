@@ -34,12 +34,13 @@ public class GooCubeGrid : MonoBehaviour {
 
 	private int3 gridSize;
 
+	private static float[,] gridCubeHeightMatrix = null;
+
 	[SerializeField]
 	private GameObject cubePrefab;
 
 	[SerializeField]
 	private float initialCubeHeight = -1f;
-
 
 	private Entity cubeEntityTemplate;
 	private EntityManager entityManager;
