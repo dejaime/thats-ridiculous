@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2030978082}
   - component: {fileID: 3135161823542124345}
   - component: {fileID: 4001095418278973329}
+  - component: {fileID: 5256926288373270770}
   m_Layer: 10
   m_Name: Projectile
   m_TagString: Projectile
@@ -169,9 +170,9 @@ MonoBehaviour:
     y: 0
     z: 0
   m_PrimitiveSize:
-    x: 0.5
-    y: 0.5
-    z: 0.5
+    x: 2
+    y: 2
+    z: 2
   m_PrimitiveOrientation:
     Value:
       x: -0
@@ -179,15 +180,15 @@ MonoBehaviour:
       z: 0
     RotationOrder: 4
   m_Capsule:
-    Height: 0.5
-    Radius: 0.25
+    Height: 2
+    Radius: 1
     Axis: 2
   m_Cylinder:
-    Height: 0.5
-    Radius: 0.25
+    Height: 2
+    Radius: 1
     Axis: 2
   m_CylinderSideCount: 20
-  m_SphereRadius: 0.25
+  m_SphereRadius: 1
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
     m_SimplificationTolerance: 0.015
@@ -322,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25a4c7d660514d458d64a8d700de08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToLive: 5
+  timeToLive: 8
 --- !u!114 &3135161823542124345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,3 +362,23 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 0
+--- !u!114 &5256926288373270770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806235016987292445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689eb02ce76f1ef4b97861759c7fe0cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  min:
+    x: -140
+    y: -250
+    z: -530
+  max:
+    x: 310
+    y: 250
+    z: 220
