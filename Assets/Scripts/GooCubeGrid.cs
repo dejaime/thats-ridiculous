@@ -82,6 +82,13 @@ public class GooCubeGrid : MonoBehaviour {
 				//SPAWN Cube entity at position, set scale
 				Entity newCube = entityManager.Instantiate(cubeEntityTemplate);
 
+				if (gridCubeHeightMatrix[x, z] < 0) {
+					commandBuffer.AddComponent<InactiveGooCubeTag>(newCube, new InactiveGooCubeTag {});
+					pgc.active = false;
+				} else {
+					pgc.active = true;
+				}
+
 				commandBuffer.SetComponent<PurpleGooCubeData>(newCube, pgc);
 				commandBuffer.SetComponent<Translation>(newCube, new Translation { Value = position });
 				float3 scale = new float3 { y = 50f * Mathf.Sin((float)x / 10f) * Mathf.Sin((float)z / 10f), x = 3.5f, z = 3.5f };
