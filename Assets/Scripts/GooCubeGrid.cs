@@ -114,6 +114,15 @@ public class GooCubeGrid : MonoBehaviour {
 	public float GetCubeHeight(int x, int z) {
 		return gridCubeHeightMatrix[x, z];
 	}
+	public int3 PositionToIndex(float x, float z) {
+		float indexX = (x - cubePositionOffsetXZ.x) / cubeSize;
+		float indexZ = (z - cubePositionOffsetXZ.z) / cubeSize;
+		return new int3 {
+			x = (int)indexX,
+			y = 0,
+			z = (int)indexZ
+		};
+	}
 }
 
 //Using this custom struct to avoid the confusion caused by X, Y in int2, or X, Y, Z with int3.
