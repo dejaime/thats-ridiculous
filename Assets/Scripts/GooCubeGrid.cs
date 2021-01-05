@@ -10,6 +10,7 @@ public class GooCubeGrid : MonoBehaviour {
 
 	public static GooCubeGrid Instance { get { return _instance; } }
 
+	public const float DEACTIVATED_CUBE_Y_POSITION = -10000;
 
 	private void Awake() {
 		if (_instance != null && _instance != this) {
@@ -27,7 +28,7 @@ public class GooCubeGrid : MonoBehaviour {
 	private int cubeSize;
 
 	[SerializeField]
-	private int yCubePosition = -1000;
+	private float yCubePosition = GooCubeGrid.DEACTIVATED_CUBE_Y_POSITION;
 
 	[SerializeField]
 	private GridSize cubePositionOffsetXZ;
@@ -74,7 +75,7 @@ public class GooCubeGrid : MonoBehaviour {
 		for (int x = 0; x < gridSize.x; ++x) {
 			for (int z = 0; z < gridSize.z; ++z) {
 				//Calculate POSITION with offset
-				int3 position = new int3 {
+				float3 position = new float3 {
 					x = cubePositionOffsetXZ.x + cubeSize * x,
 					z = cubePositionOffsetXZ.z + cubeSize * z,
 					y = yCubePosition
@@ -105,9 +106,7 @@ public class GooCubeGrid : MonoBehaviour {
 
 				commandBuffer.SetComponent<PurpleGooCubeData>(newCube, pgc);
 				commandBuffer.SetComponent<Translation>(newCube, new Translation { Value = position });
-				float3 scale = new float3 { y = 3.5f, x = 3.5f, z = 3.5f };
-				commandBuffer.AddComponent<NonUniformScale>(newCube, new NonUniformScale { Value = scale });
-
+			
 			}
 		}
 

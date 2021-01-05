@@ -17,20 +17,18 @@ public class GooDeactivationSystem : SystemBase {
 		EntityCommandBuffer.ParallelWriter commandBuffer = endSimulationEcbSystem.CreateCommandBuffer().AsParallelWriter();
 
 		Entities
-		.WithAll<Translation, PurpleGooCubeData>()
-		.ForEach((Entity entity, int entityInQueryIndex, ref Translation translation, ref PurpleGooCubeData cubeData) => {
+		.WithAll<PurpleGooCubeData>()
+		.ForEach((Entity entity, int entityInQueryIndex, ref PurpleGooCubeData cubeData) => {
 			if (cubeData.height <= 0) {
 				//If cube height is zero or negative, move it out of the play area	
 				if (cubeData.active) {
 					cubeData.active = false;
-					translation.Value.y = -1000f;
 					commandBuffer.AddComponent<InactiveGooCubeTag>(entityInQueryIndex, entity);
 				}
 			} else {
 				// Move it back to the play area otherwise (but only if still inactive)
 				if (!cubeData.active) {
 					cubeData.active = true;
-					translation.Value.y = 1;
 					commandBuffer.RemoveComponent<InactiveGooCubeTag>(entityInQueryIndex, entity);
 				}
 			}
