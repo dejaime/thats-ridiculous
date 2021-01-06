@@ -7,16 +7,18 @@ using UnityEngine;
 
 public class GooBomberAuthoring : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
     public GameObject bombPrefab;
-
+	public float cooldown;
+	public float bombSize;
     public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs) {
         referencedPrefabs.Add(bombPrefab);
     }
 
     public void Convert (Entity entity, EntityManager entityManager, GameObjectConversionSystem gameObjectConversionSystem) {
         var bomberData = new GooBomberData {
-            bombPrefab = gameObjectConversionSystem.GetPrimaryEntity(bombPrefab),
+            bombEntityTemplate = gameObjectConversionSystem.GetPrimaryEntity(bombPrefab),
             timeSinceLastDrop = 0,
-            cooldown = 1
+            cooldown = cooldown,
+            bombSize = bombSize
         };
 
         entityManager.AddComponentData<GooBomberData>(entity, bomberData);
