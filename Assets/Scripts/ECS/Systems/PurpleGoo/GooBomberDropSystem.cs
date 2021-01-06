@@ -23,7 +23,7 @@ public class GooBomberDropSystem : SystemBase {
 			gooBomberData.timeSinceLastDrop += deltaTime;
 			if (gooBomberData.timeSinceLastDrop > gooBomberData.cooldown) {
 				gooBomberData.timeSinceLastDrop -= gooBomberData.cooldown;
-				Entity bomb = commandBuffer.Instantiate(entityInQueryIndex, gooBomberData.bombPrefab);
+				Entity bomb = commandBuffer.Instantiate(entityInQueryIndex, gooBomberData.bombEntityTemplate);
 
 				Translation bombTranslation = new Translation();
 				bombTranslation.Value = new float3 {
