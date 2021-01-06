@@ -27,7 +27,6 @@ public class GooCubeGrid : MonoBehaviour {
 	[SerializeField]
 	private int cubeSize;
 
-	[SerializeField]
 	private float yCubePosition = GooCubeGrid.DEACTIVATED_CUBE_Y_POSITION;
 
 	[SerializeField]
@@ -94,7 +93,7 @@ public class GooCubeGrid : MonoBehaviour {
 					height = gridCubeHeightMatrix[x, z]
 				};
 
-				//SPAWN Cube entity at position, set scale
+				//SPAWN Cube entity at position
 				Entity newCube = entityManager.Instantiate(cubeEntityTemplate);
 
 				if (gridCubeHeightMatrix[x, z] < 0) {
