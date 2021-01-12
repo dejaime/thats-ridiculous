@@ -2,7 +2,7 @@ using Unity.Entities;
 using Unity.Transforms;
 
 public class GooHeightSystem : SystemBase {
-	const float MAX_CUBE_HEIGHT = 350f;
+	public const float MAX_CUBE_HEIGHT = 350f;
 	protected override void OnUpdate() {
 		Entities
 		.WithAll<PurpleGooCubeData>()

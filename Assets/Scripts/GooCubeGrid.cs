@@ -182,12 +182,22 @@ public class GooCubeGrid : MonoBehaviour {
 		} else if (gridCubeHeightMatrix[x + 1, z] - gridCubeHeightMatrix[x, z] > spreadStrength * spreadDeltaFactor) {
 			gridCubeHeightMatrix[x + 1, z] -= spreadStrength;
 			gridCubeHeightMatrix[x, z] += spreadStrength;
+		} else if (gridCubeHeightMatrix[x, z] > GooHeightSystem.MAX_CUBE_HEIGHT) {
+			gridCubeHeightMatrix[x + 1, z] += spreadStrength;
+			gridCubeHeightMatrix[x, z] -= spreadStrength;
+			gridCubeHeightMatrix[x + 1, z] -= spreadStrength;
+			gridCubeHeightMatrix[x, z] += spreadStrength;
 		}
 
 		if (gridCubeHeightMatrix[x, z] - gridCubeHeightMatrix[x, z + 1] > spreadStrength * spreadDeltaFactor) {
 			gridCubeHeightMatrix[x, z + 1] += spreadStrength;
 			gridCubeHeightMatrix[x, z] -= spreadStrength;
 		} else if (gridCubeHeightMatrix[x, z + 1] - gridCubeHeightMatrix[x, z] > spreadStrength * spreadDeltaFactor) {
+			gridCubeHeightMatrix[x, z + 1] -= spreadStrength;
+			gridCubeHeightMatrix[x, z] += spreadStrength;
+		} else if (gridCubeHeightMatrix[x, z] > GooHeightSystem.MAX_CUBE_HEIGHT) {
+			gridCubeHeightMatrix[x, z + 1] += spreadStrength;
+			gridCubeHeightMatrix[x, z] -= spreadStrength;
 			gridCubeHeightMatrix[x, z + 1] -= spreadStrength;
 			gridCubeHeightMatrix[x, z] += spreadStrength;
 		}
