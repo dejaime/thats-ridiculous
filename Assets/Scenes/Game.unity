@@ -516,6 +516,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7498467ea49ab78449de0d0ee2a6ba9a, type: 3}
+--- !u!1001 &914155397
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -455.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169268551, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5657804824169568615, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+      propertyPath: m_Name
+      value: Bomber
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
 --- !u!1 &958553063
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,67 +639,68 @@ MonoBehaviour:
     direction:
       x: 0
       y: 0
-      z: -1
+      z: -100
     timeSinceLastDrop: 0
-    cooldown: 1
-    bombSize: 50
+    cooldown: 2
+    bombSize: 5
   - spawnPositionTransform: {fileID: 2146853146}
     direction:
       x: 0
       y: 0
-      z: 1
+      z: 100
     timeSinceLastDrop: 0
-    cooldown: 1.5
-    bombSize: 75
+    cooldown: 3
+    bombSize: 7.5
   - spawnPositionTransform: {fileID: 1419660150}
     direction:
       x: 0
       y: 0
-      z: -1
+      z: -100
     timeSinceLastDrop: 0
-    cooldown: 75
+    cooldown: 5
     bombSize: 1.5
   - spawnPositionTransform: {fileID: 809113843}
     direction:
       x: 0
       y: 0
-      z: 1
+      z: 100
     timeSinceLastDrop: 0
-    cooldown: 2
-    bombSize: 100
+    cooldown: 4
+    bombSize: 10
   - spawnPositionTransform: {fileID: 1829576641}
     direction:
       x: 0
       y: 0
-      z: -1
+      z: -100
     timeSinceLastDrop: 0
-    cooldown: 1
-    bombSize: 50
+    cooldown: 5
+    bombSize: 5
   - spawnPositionTransform: {fileID: 345448307}
     direction:
       x: 0
       y: 0
-      z: -1
+      z: -100
     timeSinceLastDrop: 0
     cooldown: 3
-    bombSize: 100
+    bombSize: 10
   - spawnPositionTransform: {fileID: 203428407}
     direction:
-      x: 1
+      x: 100
       y: 0
       z: 0
     timeSinceLastDrop: 0
-    cooldown: 1
-    bombSize: 50
+    cooldown: 6
+    bombSize: 5
   - spawnPositionTransform: {fileID: 486126377}
     direction:
-      x: -1
+      x: -100
       y: 0
       z: 0
     timeSinceLastDrop: 0
     cooldown: 3
-    bombSize: 100
+    bombSize: 10
   bomberPrefab: {fileID: 5657804824169568615, guid: 023e36dbf906f114cb9ca15e61af0b3f, type: 3}
+  bombPrefab: {fileID: 7607092656445314941, guid: 7498467ea49ab78449de0d0ee2a6ba9a, type: 3}
 --- !u!1 &1006655508
 GameObject:
   m_ObjectHideFlags: 0
