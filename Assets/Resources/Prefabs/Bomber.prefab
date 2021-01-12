@@ -111,9 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   constantSpeed:
-    x: 100
+    x: 0
     y: 0
-    z: 100
+    z: 80
 --- !u!114 &5657804824169568635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,13 +127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   min:
-    x: -140
-    y: -250
-    z: -530
+    x: -350
+    y: -300
+    z: -810
   max:
     x: 310
-    y: 250
-    z: 220
+    y: 300
+    z: 300
 --- !u!114 &1686009027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 7607092656445314941, guid: 7498467ea49ab78449de0d0ee2a6ba9a, type: 3}
+  cooldown: 0
+  bombSize: 10
