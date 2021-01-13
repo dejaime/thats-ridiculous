@@ -84,9 +84,12 @@ public class BomberSpawner : MonoBehaviour {
 		commandBuffer.SetComponent<GooBomberData>(bomber, new GooBomberData {
 			timeSinceLastDrop = spawnData.timeSinceLastDrop,
 			cooldown = spawnData.cooldown,
-			//bombSize = spawnData.bombSize,
-			bombSize = 300,
+			bombSize = spawnData.bombSize,
 			bombEntityTemplate = bombEntityTemplate
+		});
+
+		commandBuffer.AddComponent<Rotation>(bomber, new Rotation {
+			Value = Quaternion.LookRotation(spawnData.direction, Vector3.up)
 		});
 
 		commandBuffer.Playback(entityManager);
