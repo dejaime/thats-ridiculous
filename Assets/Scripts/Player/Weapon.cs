@@ -7,7 +7,9 @@ public class Weapon : MonoBehaviour {
 	CharacterController playerController;
 
 	[SerializeField]
-	int baseProjectileCount = 10;
+	[Tooltip("Time in seconds after which we can return MAX CHARGE when calculating total projectiles without doing the math." +
+				"        Should be slightly over the time it would take the weapon to fully charge.")]
+	int maxChargeTimeCutoff = 20;
 
 	[SerializeField]
 	float chargeUpRate = 20;
@@ -24,7 +26,6 @@ public class Weapon : MonoBehaviour {
 	[SerializeField]
 	float cooldown = 0.2f;
 
-	float timeUntilNextShot = 0f;
 
 	public GameObject projectilePrefab;
 	private Entity projectileEntityTemplate;
@@ -33,9 +34,10 @@ public class Weapon : MonoBehaviour {
 	private BlobAssetStore blobAssetStore;
 
 
-	private Entity[] newProjectiles;
+	private Entity[] newProjectilesArray;
 	int projectilesReady = 0;
 	float timeSinceLastShot = 0;
+	float timeUntilNextShot;
 
 
 	private void Awake() {
@@ -43,7 +45,20 @@ public class Weapon : MonoBehaviour {
 		blobAssetStore = new BlobAssetStore();
 		GameObjectConversionSettings goConversionSettings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, blobAssetStore);
 		projectileEntityTemplate = GameObjectConversionUtility.ConvertGameObjectHierarchy(projectilePrefab, goConversionSettings);
-		newProjectiles = new Entity[maxCharge];
+
+		
+		EntityCommandBuffer commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
+
+		// This ensures that the entity is disabled when created
+		//	need to remove this component when Shoot is called and initial spatial
+		//	components are populated
+		commandBuffer.AddComponent<Disabled>(projectileEntityTemplate);
+		
+		commandBuffer.Playback(entityManager);
+		commandBuffer.Dispose();
+
+		timeUntilNextShot = cooldown;
+		newProjectilesArray = new Entity[maxCharge];
 	}
 
 
@@ -51,35 +66,35 @@ public class Weapon : MonoBehaviour {
 		timeUntilNextShot -= Time.deltaTime;
 		timeSinceLastShot += Time.deltaTime;
 
+		EntityCommandBuffer commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
+		int totalProjectiles = GetTotalProjectiles();
+
 		// Needs to be called before Shoot so there are enough projectiles prepared
 		// Calling every Update also ensures we spread Entity creation through many frames
-		PrepareProjectiles();
+		PrepareProjectiles(commandBuffer, totalProjectiles);
 
 		if (timeUntilNextShot < 0) {
 			if (!Input.GetMouseButton(0)) {
-				Shoot();
+				Shoot(commandBuffer, totalProjectiles);
 
 				// This has to be done after calling Shot,
 				//	as it will reset the weapon charge
 				timeSinceLastShot = 0;
-
-				timeUntilNextShot += cooldown;
-				if (timeUntilNextShot < 0) {
-					timeUntilNextShot = 0;
-				}
+				timeUntilNextShot = cooldown;
 			}
 		}
+		
+		commandBuffer.Playback(entityManager);
+		commandBuffer.Dispose();
 	}
 
 
-	private void Shoot() {
-		EntityCommandBuffer commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
+	private void Shoot(EntityCommandBuffer commandBuffer, int totalProjectiles) {
+		float increaseSpread = 1 + 5 * totalProjectiles/maxCharge;
 
-		int totalProjectiles = GetTotalProjectiles();
-		float increaseSpread = 6 * totalProjectiles/maxCharge;
-
-		for (int i = 0; i < totalProjectiles; ++i) {
-			Entity newProjectile = newProjectiles[i];
+		int i;
+		for (i = 0; i < totalProjectiles; ++i) {
+			Entity newProjectile = newProjectilesArray[i];
 			InitialProjectileSpatialData spatialData = new InitialProjectileSpatialData {
 				spawnPosition = transform.position,
 				speed = {
@@ -97,44 +112,35 @@ public class Weapon : MonoBehaviour {
 			commandBuffer.RemoveComponent<Disabled>(newProjectile);
 		}
 
-		commandBuffer.Playback(entityManager);
-		commandBuffer.Dispose();
-
-		// TODO Clean newProjectiles array from used entities by bringing entities
-		//	with indexes >= totalProjectiles and < projectilesReady to the front of the array.
-
-		// TODO Assign null to remaining space (indexes >= projectilesReady - totalProjectiles),
-		//	and update projectilesReady to reflect it.
-	}
-	
-
-	private void PrepareProjectiles() {
-		EntityCommandBuffer commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
-
-		int totalProjectiles = GetTotalProjectiles();
-		int projectilesToPrepare = totalProjectiles - projectilesReady;
-
-		for (int i = 0; i < totalProjectiles; ++i) {
-			Entity newProjectile = entityManager.Instantiate(projectileEntityTemplate);
-			
-			commandBuffer.SetComponent<ProjectileData>(newProjectile, new ProjectileData{
-				hitsLeft = 1,
-				scale = 1f
-			});
-
-			// This ensures that the entity is disabled when created
-			//	need to remove this component when Shoot is called and initial spatial
-			//	components are populated
-			commandBuffer.AddComponent<Disabled>(newProjectile);
+		// Take over the i variable to continue where we stopped,
+		int j;
+		for (j = 0; i < projectilesReady; ++j) {
+			newProjectilesArray[j] = newProjectilesArray[i++];
 		}
 
-		commandBuffer.Playback(entityManager);
-		commandBuffer.Dispose();
+		// Saving how many entities we saved in our cache.
+		// I'm not nulling the rest just so I don't need to declare the
+		//	array as nullable (i.e. Entity?[] newProjectiles)
+		projectilesReady = j;
+	}
+
+
+	private void PrepareProjectiles(EntityCommandBuffer commandBuffer, int totalProjectiles) {
+		int projectilesToPrepare = totalProjectiles - projectilesReady;
+
+		int i;
+		for (i = projectilesReady; i < totalProjectiles; ++i) {
+			Entity newProjectile = entityManager.Instantiate(projectileEntityTemplate);
+			newProjectilesArray[i] = newProjectile;
+		}
+		projectilesReady = i;
+
 	}
 
 
 	private int GetTotalProjectiles () {
-		return Mathf.Min (Mathf.FloorToInt(chargeUpRate * timeSinceLastShot), maxCharge);
+		if (timeSinceLastShot > maxChargeTimeCutoff) return maxCharge;
+		return Mathf.Min (Mathf.FloorToInt(chargeUpRate * timeSinceLastShot * (Mathf.Pow(1.1f, timeSinceLastShot))), maxCharge);
 	}
 
 
