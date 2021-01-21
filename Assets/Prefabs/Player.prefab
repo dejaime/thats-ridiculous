@@ -427,7 +427,7 @@ MonoBehaviour:
   playerController: {fileID: 470738601454197897}
   baseProjectileCount: 3
   chargeUpRate: 200
-  maxCharge: 2000
+  maxCharge: 10000
   projectileSpeedMultiplier: 5
   projectileAccelerationMultiplier: 50
   cooldown: 0.5
