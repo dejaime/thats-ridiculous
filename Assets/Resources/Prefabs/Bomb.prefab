@@ -305,13 +305,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   min:
-    x: -255
-    y: -255
-    z: -255
+    x: -350
+    y: -300
+    z: -810
   max:
-    x: 255
-    y: 255
-    z: 255
+    x: 310
+    y: 300
+    z: 300
 --- !u!114 &7607092656445314933
 MonoBehaviour:
   m_ObjectHideFlags: 0
