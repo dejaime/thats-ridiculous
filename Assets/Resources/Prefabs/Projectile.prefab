@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d05334de29a04f4a993a2236efa950d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitsLeft: 3
+  hitsLeft: 1
   scale: 1
 --- !u!114 &4001095418278973329
 MonoBehaviour:
