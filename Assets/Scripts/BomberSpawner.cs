@@ -65,7 +65,6 @@ public class BomberSpawner : MonoBehaviour {
 
 
 	private void SpawnBomberAt(BomberSpawnData spawnData) {
-		Debug.Log("Spawn at " + spawnData.spawnPositionTransform.position);
 		EntityCommandBuffer commandBuffer = new EntityCommandBuffer(Allocator.TempJob);
 
 		Entity bomber = entityManager.Instantiate(bomberEntityTemplate);
