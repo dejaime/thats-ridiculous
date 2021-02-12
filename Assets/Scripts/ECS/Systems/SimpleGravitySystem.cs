@@ -10,6 +10,6 @@ public class SimpleGravitySystem : SystemBase {
 			ref SimpleGravityData simpleGravityData) => {
 				translation.Value.y += simpleGravityData.currentVerticalSpeed;
                 simpleGravityData.currentVerticalSpeed += simpleGravityData.gravity * deltaTime;
-			}).Schedule();
+			}).ScheduleParallel();
 	}
 }
