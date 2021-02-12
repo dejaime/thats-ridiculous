@@ -128,9 +128,17 @@ public class GooCubeGrid : MonoBehaviour {
 		gridCubeHeightMatrix[x, z] = height;
 	}
 
+
 	public float GetCubeHeight(int x, int z) {
 		return gridCubeHeightMatrix[x, z];
 	}
+
+
+	public float GetCubeHeightFromPosition(float x, float y) {
+		int3 index = PositionToIndex(x, y);
+		return GetCubeHeight(index.x, index.z);
+	}
+
 
 	public void Explode(float bombDropX, float bombDropZ, float size) {
 		int3 index = PositionToIndex(bombDropX, bombDropZ);
@@ -151,6 +159,7 @@ public class GooCubeGrid : MonoBehaviour {
 		}
 	}
 
+
 	public int3 PositionToIndex(float x, float z) {
 		float indexX = (x - cubePositionOffsetXZ.x) / cubeSize;
 		float indexZ = (z - cubePositionOffsetXZ.z) / cubeSize;
@@ -168,14 +177,14 @@ public class GooCubeGrid : MonoBehaviour {
 			timeSinceLastSpread -= spreadCooldown;
 			for (int i = 1; i < gridSize.x - 1; ++i) {
 				for (int j = 1; j < gridSize.z - 1; ++j) {
-					SpreadCube(i, j);
+					SpreadSingleCube(i, j);
 				}
 			}
 		}
 	}
 
 
-	private void SpreadCube(int x, int z) {
+	private void SpreadSingleCube(int x, int z) {
 		if (gridCubeHeightMatrix[x, z] - gridCubeHeightMatrix[x + 1, z] > spreadStrength * spreadDeltaFactor) {
 			gridCubeHeightMatrix[x + 1, z] += spreadStrength;
 			gridCubeHeightMatrix[x, z] -= spreadStrength;
@@ -203,6 +212,7 @@ public class GooCubeGrid : MonoBehaviour {
 		}
 	}
 }
+
 
 //Using this custom struct to avoid the confusion caused by X, Y in int2, or X, Y, Z with int3.
 //  With this, we can simply have X and Z only, avoiding confusion in code and in the inspector. 
