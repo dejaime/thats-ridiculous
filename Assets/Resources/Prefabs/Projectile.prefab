@@ -210,7 +210,7 @@ MonoBehaviour:
     m_Restitution:
       m_Override: 1
       m_Value:
-        Value: 0.8
+        Value: 0.4
         CombineMode: 1
     m_BelongsToCategories:
       m_Override: 1
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25a4c7d660514d458d64a8d700de08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToLive: 8
+  timeToLive: 12
 --- !u!114 &3135161823542124345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d05334de29a04f4a993a2236efa950d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitsLeft: 1
+  hitsLeft: 2
   scale: 1
 --- !u!114 &4001095418278973329
 MonoBehaviour:
