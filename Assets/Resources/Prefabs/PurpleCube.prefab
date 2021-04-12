@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5829420100779233447}
   - component: {fileID: 1439434469}
   - component: {fileID: 4801735551218962507}
+  - component: {fileID: 8862150767867440023}
   m_Layer: 0
   m_Name: PurpleCube
   m_TagString: Untagged
@@ -310,3 +311,16 @@ MonoBehaviour:
   height: 0
   pendingDamage: 0
   active: 0
+--- !u!114 &8862150767867440023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118526098940961457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ffb532000971d44855839d18e72e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visual_height: 0
