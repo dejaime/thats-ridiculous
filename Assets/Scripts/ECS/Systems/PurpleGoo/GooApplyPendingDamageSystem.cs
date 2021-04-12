@@ -1,22 +1,18 @@
-using UnityEngine;
 using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Physics;
-using Unity.Transforms;
 
 public class GooApplyPendingDamageSystem : SystemBase {
 	protected override void OnUpdate() {
-
+		GooCubeGrid cubeGrid = GooCubeGrid.Instance;
 		Entities
 		.WithAll<PurpleGooCubeData>()
 		.WithNone<InactiveGooCubeTag>()
 		.ForEach((ref PurpleGooCubeData cubeData) => {
-			GooCubeGrid.Instance.SetCubeHeight(
+			cubeGrid.SetCubeHeight(
 					cubeData.gridIndex.x,
 					cubeData.gridIndex.z,
-					GooCubeGrid.Instance.GetCubeHeight(cubeData.gridIndex.x, cubeData.gridIndex.z) - cubeData.pendingDamage
+					cubeGrid.GetCubeHeight(cubeData.gridIndex.x, cubeData.gridIndex.z) - cubeData.pendingDamage
 				);
 			cubeData.pendingDamage = 0;
-		}).WithoutBurst().Schedule();
+		}).WithoutBurst().Run();
 	}
 }
