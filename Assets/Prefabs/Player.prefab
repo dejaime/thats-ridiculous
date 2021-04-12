@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 470738601454197897}
   - component: {fileID: 470738601454197898}
   - component: {fileID: 470738601454197899}
+  - component: {fileID: 493933555358013316}
   m_Layer: 0
   m_Name: CharacterController
   m_TagString: Player
@@ -285,6 +286,21 @@ MonoBehaviour:
   horizontalSensitivity: 1.5
   minX: -60
   maxX: 60
+--- !u!114 &493933555358013316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470738601454197893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d5cd3679fd9b84f917cffdca08a25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretPrefab: {fileID: 4477815196962123610, guid: fe4e702c9bed27a4d88d037508432053, type: 3}
+  maxTurrets: 3
+  spawnCooldownInSeconds: 1
 --- !u!1 &470738601761418430
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,10 +441,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 470738601454197897}
-  baseProjectileCount: 3
+  maxChargeTimeCutoff: 20
   chargeUpRate: 200
-  maxCharge: 10000
-  projectileSpeedMultiplier: 5
+  maxCharge: 8000
+  projectileSpeedMultiplier: 8
   projectileAccelerationMultiplier: 50
   cooldown: 0.5
   projectilePrefab: {fileID: 1806235016987292445, guid: 6213147f32c66e644b4eaf752eda040f, type: 3}
