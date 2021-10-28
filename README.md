@@ -1,3 +1,7 @@
+# Please read!
+
+Do not use this as a code quality / style reference for DOTS. This is highly experimental code, more akin to a prototype and may not be suited for a production environment. 
+
 # WIP
 
 This is still a work in progress, as I fight my way up the DOTS learning curve. 
